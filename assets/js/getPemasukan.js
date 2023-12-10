@@ -14,7 +14,7 @@ function getWithToken(target_url, responseFunction) {
 
     fetch(target_url, requestOptions)
         .then(response => response.text())
-        .then(result => responseFunction(result))
+        .then(result => responseFunction(JSON.parse(result)))
         .catch(error => console.log('error', error));
 }
 
