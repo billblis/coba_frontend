@@ -33,7 +33,7 @@ const responseData = (result) => {
             title: "Register Successful",
             text: result.message,
         }).then(() => {
-            window.location.href = "login.html";
+            window.location.href = "../pages/login.html";
         });
     } else {
         Swal.fire({
