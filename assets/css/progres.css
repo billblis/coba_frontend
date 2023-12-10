@@ -1,0 +1,223 @@
+/**************************/
+/*   Progress Bar Style   */
+/**************************/
+.container{
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    background: #fff;
+    margin: 0 15px;
+    padding: 10px 20px;
+    border-radius: 7px;
+}
+.container .skill-box{
+    width: 100%;
+    margin: 25px 0;
+}
+.skill-box .title{
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+.skill-box .skill-bar{
+    height: 8px;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.1);
+}
+.skill-bar .skill-per{
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 90%;
+    border-radius: 6px;
+    background: #4070f4;
+    animation: progress 0.4s ease-in-out forwards;
+    opacity: 0;
+}
+.skill-per.freelance{
+    width: 70%;
+    animation-delay: 0.1s;
+}
+.skill-per.investasi{
+    width: 50%;
+    animation-delay: 0.2s;
+}
+.skill-per.orangtua{
+    width: 30%;
+    animation-delay: 0.3s;
+}
+.skill-per.bonus{
+    width: 20%;
+    animation-delay: 0.3s;
+}
+.skill-per.bisnis{
+    width: 40%;
+    animation-delay: 0.3s;
+}
+.skill-per.pensiun{
+    width: 35%;
+    animation-delay: 0.3s;
+}
+.skill-per.lainnya{
+    width: 30%;
+    animation-delay: 0.3s;
+}
+@keyframes progress {
+    0%{
+        width: 0;
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.skill-per .tooltip{
+    position: absolute;
+    right: -14px;
+    top: -28px;
+    font-size: 9px;
+    font-weight: 500;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #4070f4;
+    z-index: 1;
+}
+.tooltip::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    height: 10px;
+    width: 10px;
+    z-index: -1;
+    background-color: #4070f4;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+
+/* Container styling */
+.w-full {
+    width: 100%;
+  }
+
+  /* Card styling */
+.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .bg-grey-light {
+    background-color: #f0f0f0;
+  } */
+
+  /* Progress bar styling */
+.text-xs {
+    font-size: 0.75rem;
+  }
+
+  .leading-none {
+    line-height: 1;
+  }
+
+  .py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-white {
+    color: #fff;
+  } */
+
+  /* Progress bar color classes */
+  .bg-blue {
+    background-color: #3498db;
+  }
+
+  .bg-teal {
+    background-color: #008080;
+  }
+
+  .bg-orange {
+    background-color: #ffa500;
+  }
+
+  .bg-red {
+    background-color: #ff0000;
+  }
+
+  .bg-green {
+    background-color: #00ff00;
+  }
+
+  .bg-purple {
+    background-color: #800080;
+  }
+
+  .bg-yellow {
+    background-color: #ffff00;
+  }
+
+  .bg-pink {
+    background-color: #ff69b4;
+  }
+
+  /* Progress bar width */
+   .width-45 {
+    width: 45%;
+    animation: width-animation 1s ease-in-out;
+  }
+
+  .width-55 {
+    width: 55%;
+    animation: width-animation 1s ease-in-out;
+  }
+
+  .width-65 {
+    width: 65%;
+    animation: width-animation 1s ease-in-out;
+  }
+
+  .width-75 {
+    width: 75%;
+    animation: width-animation 1s ease-in-out;
+  }
+
+  .width-80 {
+    width: 80%;
+    animation: width-animation 1s ease-in-out;
+  }
+
+  .width-30 {
+    width: 30%;
+    animation: width-animation 1s ease-in-out;
+  }
+
+  .width-90 {
+    width: 90%;
+    animation: width-animation 1s ease-in-out;
+  }
+
+  .width-50 {
+    width: 50%;
+    animation: width-animation 1s ease-in-out;
+  }
+
+  @keyframes width-animation {
+    from {
+      width: 0;
+      background-color: #ddd; 
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+    }
+    to {
+      width: 100%;
+      background-color: #3498db; 
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.8); 
+    }
+  } 
