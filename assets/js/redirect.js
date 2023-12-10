@@ -5,7 +5,7 @@ const checkTokenAndRedirect = () => {
     const tokenValue = getCookie(token);
 
     if (!tokenValue) {
-        window.location.href = "../login.html";
+        window.location.href = ".../login.html";
     }
 }
 
