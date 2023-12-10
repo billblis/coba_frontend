@@ -537,84 +537,8 @@
     </div>
       </div>
     </div>
-
-    <!-- <script>
-      function formatRupiah(input) {
-        // Hapus semua karakter selain angka
-        let value = input.value.replace(/\D/g, "");
-    
-        // Format rupiah dengan tanda titik sebagai pemisah ribuan dan jutaan
-        value = new Intl.NumberFormat("id-ID", {
-          style: "currency",
-          currency: "IDR",
-          minimumFractionDigits: 0,
-        }).format(value);
-    
-        // Setel nilai input dengan format rupiah
-        input.value = value;
-      }
-
-      function tambahData() {
-      // Mendapatkan nilai dari input elemen (tanggal, jumlah, sumber, deskripsi)
-      const tanggalInput = document.getElementById("tanggalInput");
-      const rupiahInput = document.getElementById("rupiahInput");
-      const selectSumber = document.getElementById("selectSumber"); // Ganti "sumber" dengan ID yang benar
-      const deskripsiInput = document.getElementById("deskripsiInput"); // Ganti "textarea" dengan ID yang benar
-
-       // Periksa apakah elemen ditemukan sebelum mencoba membaca properti 'value'
-       if (!tanggalInput || !rupiahInput || !selectSumber || !deskripsiInput) {
-       console.error("Salah satu elemen tidak ditemukan.");
-       return;
-      }
-
-      const tanggal = tanggalInput.value;
-      const jumlah = rupiahInput.value;
-      const sumber = selectSumber.value;
-      const deskripsi = deskripsiInput.value;
-
-      // Lakukan validasi (tambahkan validasi sesuai kebutuhan)
-
-      // Lakukan sesuatu dengan data yang telah diperoleh
-      console.log("Tambah Data Pemasukan:");
-      console.log("Tanggal:", tanggal);
-      console.log("Jumlah:", jumlah);
-      console.log("Sumber:", sumber);
-      console.log("Deskripsi:", deskripsi);
-
-      // Reset nilai input setelah data ditambahkan (sesuaikan dengan kebutuhan)
-       tanggalInput.value = "";
-       rupiahInput.value = "";
-       selectSumber.value = "Pilih Sumber";
-       deskripsiInput.value = "";
-      }
-
-      function batalTambahData() {
-      // Reset nilai input jika batal (sesuaikan dengan kebutuhan)
-      document.getElementById("tanggalInput").value = "";
-      document.getElementById("rupiahInput").value = "";
-      document.getElementById("selectSumber").value = "Pilih Sumber";
-      document.getElementById("deskripsiInput").value = "";
-      }  
-    </script> -->
-
-
-    <!-- <script>
-        function formatRupiah(input) {
-          // Hapus semua karakter selain angka
-          let value = input.value.replace(/\D/g, "");
-        
-          // Format rupiah dengan tanda titik sebagai pemisah ribuan dan jutaan
-          value = new Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR",
-            minimumFractionDigits: 0,
-          }).format(value);
-        
-          // Setel nilai input dengan format rupiah
-          input.value = value;
-        }
-        </script> -->
-    <script type="module" src="../assets/js/insertpemasukan.js"></script>
+    <script type="module" src="../assets/js/insertPemasukan.js"></script>
+    <script type="module" src="../assets/js/auth.js"></script>
 
   </body>
 </html>
