@@ -1062,32 +1062,7 @@
   startCounter("totalCounter", 203000);
   startCounter("contactsCounter", 35);
   </script>
-  
-  
 
- <!-- <script>
-function startCounter(id, target) {
-  const counter = document.getElementById(id);
-  let currentNumber = 0;
-  const interval = 120; // Durasi animasi dalam milidetik
-  const step = target / (1500 / interval); // Hitung langkah per animasi
-
-  const animation = setInterval(() => {
-    currentNumber += step;
-    counter.textContent = (id === "expensesCounter" ? "Rp " : "") + currentNumber.toFixed(2);
-
-    if (currentNumber >= target) {
-      counter.textContent = (id === "expensesCounter" ? "Rp " : "") + target.toFixed(2);
-      clearInterval(animation);
-    }
-  }, interval);
-}
-
-startCounter("incomeCounter", 250.000);
-startCounter("expensesCounter", 47.000);
-startCounter("totalCounter", 203.000);
-startCounter("contactsCounter", 35);
- </script> -->
  
   </body>
 
