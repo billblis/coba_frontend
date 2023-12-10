@@ -18,7 +18,7 @@ function getWithToken(target_url, responseFunction) {
         .catch(error => console.log('error', error));
 }
 
-const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getPemasukanFromID";
+const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
 
 const dataPemasukan  = (value) => {
     const data = formPemasukan
