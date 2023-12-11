@@ -4,7 +4,7 @@ import { formPemasukan } from "./table.js";
 
 function getWithToken(target_url, responseFunction) {
     const myHeaders = new Headers();
-    myHeaders.append("Authorization", getCookie("Authorization"));
+    myHeaders.append("token", getCookie("token"));
 
     const requestOptions = {
         method: 'GET',
