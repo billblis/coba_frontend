@@ -33,7 +33,7 @@ const Login = () => {
 
 function responseData(result) {
     if (result.token) {
-        setCookieWithExpireHour("token", result.token, 2);
+        setCookieWithExpireHour("Authorization", result.token, 2);
 
         // Use SweetAlert for success message
         Swal.fire({
