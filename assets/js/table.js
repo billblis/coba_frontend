@@ -8,7 +8,7 @@ export const formPemasukan = `
     <span
     class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
   >
-  #JUMLAH_MASUK#
+  Rp. #JUMLAH_MASUK#
   </span>
   </th>
     <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-800 text-left">#SUMBER#</th>
