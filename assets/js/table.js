@@ -4,7 +4,13 @@ export const formPemasukan = `
                   >
 <tr class="h-18 text-gray-700 dark:text-gray-400">
     <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-800 text-left">#TANGGAL_MASUK#</th>
-    <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-800 text-left">#JUMLAH_MASUK#</th>
+    <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-800 text-left">
+    <span
+    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+  >
+  #JUMLAH_MASUK#
+  </span>
+  </th>
     <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-800 text-left">#SUMBER#</th>
     <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-500 text-left">#DESKRIPSI#</th>
     <th class="whitespace-nowrap pr-4 text-sm font-medium text-coolGray-800">
