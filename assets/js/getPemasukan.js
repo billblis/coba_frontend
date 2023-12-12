@@ -27,7 +27,8 @@ const dataPemasukan  = (value) => {
     .replace("#SUMBER#", value.sumber)
     .replace("#DESKRIPSI#", value.deskripsi)
     .replace("#IDEDIT#", value._id)
-    .replace("#IDHAPUS#", value._id);
+    .replace("#IDHAPUS#", value._id)
+    .replace("#DELETE#", value._id);
 
     addInner("tablePemasukan", data);
 }
