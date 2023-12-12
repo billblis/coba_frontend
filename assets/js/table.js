@@ -8,7 +8,7 @@ export const formPemasukan = `
                       #TANGGAL_MASUK# 
                       </td>
                       <td class="px-4 py-3 text-xs">
-                      #JUMLAH_MASUK#
+                      Rp. #JUMLAH_MASUK#
                       </td>
                       <td class="px-4 py-3 text-sm">
                         <span
