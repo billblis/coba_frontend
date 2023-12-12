@@ -2,7 +2,7 @@ import { postWithToken } from "https://jscroot.github.io/api/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js"
 
-const insertPemasukan = () => {
+const insertPengeluaran = () => {
     const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/insertPengeluaran"
     const tokenkey = "Authorization";
     const tokenvalue = getCookie("Authorization");
