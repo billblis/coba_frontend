@@ -1,7 +1,7 @@
 export const isiData = (results) => {
     const dataPemasukan = [
       { id: "tanggal_masuk", path: "data.0.tanggal_masuk" },
-      { id: "jumlah_masuk", path: "data.0.jumlah_masuk" },
+      { id: "jumlah_masuk", path: "data.0.jumlah_masuk", type: "integer" },
       { id: "sumber", path: "data.0.sumber" },
       { id: "deskripsi", path: "data.0.deskripsi" },
     ];
