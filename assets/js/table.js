@@ -29,7 +29,11 @@ export const formPengeluaran = `
                   >
 <tr class="h-18 text-gray-700 dark:text-gray-400">
     <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-800 text-left">#TANGGAL_KELUAR#</th>
-    <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-800 text-left">#JUMLAH_KELUAR#</th>
+    <span
+    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+  >
+  Rp. #JUMLAH_KELUAR#
+  </span>
     <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-800 text-left">#SUMBER#</th>
     <th class="whitespace-nowrap px-4 text-sm font-medium text-coolGray-500 text-left">#DESKRIPSI#</th>
     <th class="whitespace-nowrap pr-4 text-sm font-medium text-coolGray-800">
