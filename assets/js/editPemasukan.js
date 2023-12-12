@@ -12,7 +12,7 @@ export const isiData = (results) => {
   
       // Convert 'jumlah_masuk' value to integer
       if (id === "jumlah_masuk") {
-        inputElement.value = parseInt(value, 10);
+        inputElement.value = parseInt(value);
       } else {
         inputElement.value = value;
       }
