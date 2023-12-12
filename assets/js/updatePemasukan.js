@@ -37,11 +37,11 @@ const responseData = (result) => {
     }
 }
 
-const updateTodo = () => {
+const updatePemasukan = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const _id = urlParams.get("_id");
 
-    console.log("todoID:", _id);
+    console.log("pemasukanID:", _id);
 
     const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/updatePemasukan?_id=" + _id;
 
@@ -61,5 +61,5 @@ const btnUpdates = document.getElementById("btnUpdate");
 
 btnUpdates.addEventListener("click", () => {
     console.log("button aktif");
-    updateTodo();
+    updatePemasukan();
   });
