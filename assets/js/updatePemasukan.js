@@ -47,7 +47,7 @@ const updateTodo = () => {
 
     const data = {
         "tanggal_masuk": getValue("tanggal_masuk"),
-        "jumlah_masuk": getValue("jumlah_masuk"),
+        "jumlah_masuk": parseInt(getValue("jumlah_masuk")),
         "sumber": getValue("sumber"),
         "deskripsi" : getValue("deskripsi"),
     };
