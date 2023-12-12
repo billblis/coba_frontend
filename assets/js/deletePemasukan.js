@@ -44,4 +44,4 @@ const deletePemasukan = async (IDHAPUS) => {
   }
 };
 
-window.deleteTodo = deletePemasukan;
+window.deletePemasukan = deletePemasukan;
