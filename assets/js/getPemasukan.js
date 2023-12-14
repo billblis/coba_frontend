@@ -21,6 +21,8 @@ function getWithToken(target_url, responseFunction) {
 const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
 
 const dataPemasukan  = (value) => {
+    document.getElementById("jmlpemasukan").innerHTML =
+    "" + MyvarMahasiswa.length + " Data";
     const data = formPemasukan
     .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
     .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
