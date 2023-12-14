@@ -38,10 +38,23 @@ const dataPemasukan  = (value) => {
 
 const responseData = (result) => {
     if (result.status === true) {
-        result.data.forEach(dataPemasukan);
+        let totalIncome = 0;
+
+        result.data.forEach((value) => {
+            dataPemasukan(value);
+            totalIncome += value.jumlah_masuk;
+        });
+
+        // Update the total income in the HTML element
+        const totalIncomeElement = document.getElementById("totalIncome");
+        if (totalIncomeElement) {
+            totalIncomeElement.textContent = `Rp. ${totalIncome}`;
+        }
 
         console.log(result);
     }
 }
 
 getWithToken(target_url, responseData);
+
+
