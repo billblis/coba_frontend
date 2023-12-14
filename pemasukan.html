@@ -129,8 +129,8 @@
             </li>
           </ul>
           <div class="px-6 my-6">
-            <a href="pages/login.html" onclick="logout()" class="block w-full">
-                <button
+            <a class="block w-full">
+                <button type="button" id="btnLogout"
                   class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                 >
                   Logout
@@ -261,12 +261,15 @@
             </li>
           </ul>
           <div class="px-6 my-6">
-            <button onclick="logout()"
-            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-          >
-            Logout
-            <span class="ml-2" aria-hidden="true">+</span>
-          </button>
+            <a  class="block w-full">
+                <button type="button" id="btnLogout"
+                  class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                >
+                  Logout
+                  <span class="ml-2" aria-hidden="true">-></span>
+                </button>
+              </a>
+              
           </div>
         </div>
       </aside>
@@ -384,7 +387,7 @@
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
                     aria-label="submenu"
                   >
-                    <li class="flex">
+                    <!-- <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                         href="#"
@@ -428,28 +431,27 @@
                         </svg>
                         <span>Settings</span>
                       </a>
-                    </li>
+                    </li> -->
                     <li class="flex">
-                      <a
-                        class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="pages/login.html" onclick="logout()"
+                      <button type="button" id="btnLogout"
+                      class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" 
+                    >
+                      <svg
+                        class="w-4 h-4 mr-3"
+                        aria-hidden="true"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                       >
-                        <svg
-                          class="w-4 h-4 mr-3"
-                          aria-hidden="true"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                          ></path>
-                        </svg>
-                        <span>Logout</span>
-                      </a>
+                        <path
+                          d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                        ></path>
+                      </svg>
+                      <span>Logout</span>
+                    </button>
                     </li>
                   </ul>
                 </template>
@@ -725,62 +727,62 @@
                </span>
              </div>
             <!-- Charts -->
-            <div class="grid gap-6 mb-8 md:grid-cols-2">
-              <!-- Bars chart -->
-              <div
-                  class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 mt-8"
+          </div>
+          <div class="grid gap-6 mb-8 md:grid-cols-2">
+            <!-- Bars chart -->
+            <div
+                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 mt-8"
+              >
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                  Bars
+                </h4>
+                <canvas id="bars"></canvas>
+                <div
+                  class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
                 >
-                  <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                    Bars
-                  </h4>
-                  <canvas id="bars"></canvas>
-                  <div
-                    class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
-                  >
-                    <!-- Chart legend -->
-                    <div class="flex items-center">
-                      <span
-                        class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
-                      ></span>
-                      <span>Pemasukan</span>
-                    </div>
-                    <div class="flex items-center">
-                      <span
-                        class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
-                      ></span>
-                      <span>Pengeluaran</span>
-                    </div>
+                  <!-- Chart legend -->
+                  <div class="flex items-center">
+                    <span
+                      class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
+                    ></span>
+                    <span>Pemasukan</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span
+                      class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+                    ></span>
+                    <span>Pengeluaran</span>
                   </div>
                 </div>
-  
-                <!-- Lines chart -->
-              <div
-              class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 mt-8"
+              </div>
+
+              <!-- Lines chart -->
+            <div
+            class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 mt-8"
+          >
+            <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+              Lines
+            </h4>
+            <canvas id="line"></canvas>
+            <div
+              class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
             >
-              <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                Lines
-              </h4>
-              <canvas id="line"></canvas>
-              <div
-                class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
-              >
-                <!-- Chart legend -->
-                <div class="flex items-center">
-                  <span
-                    class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
-                  ></span>
-                  <span>Pemasukan</span>
-                </div>
-                <div class="flex items-center">
-                  <span
-                    class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
-                  ></span>
-                  <span>Pengeluaran</span>
-                </div>
+              <!-- Chart legend -->
+              <div class="flex items-center">
+                <span
+                  class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
+                ></span>
+                <span>Pemasukan</span>
+              </div>
+              <div class="flex items-center">
+                <span
+                  class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+                ></span>
+                <span>Pengeluaran</span>
               </div>
             </div>
-           </div>
           </div>
+         </div>
         </main>
         </div>
       </div>
@@ -788,7 +790,8 @@
 
     <script type="module" src="assets/js/getPemasukan.js"></script>
     <script type="module" src="assets/js/deletePemasukan.js"></script>
-    <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="../assets/js/logout.js"></script>
+    <!-- <script type="module" src="assets/js/auth.js"></script> -->
   </body>
 
 </html>

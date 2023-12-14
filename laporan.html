@@ -127,12 +127,15 @@
               </li>
           </ul>
           <div class="px-6 my-6">
-            <button onclick="logout()"
-            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-          >
-            Logout
-            <span class="ml-2" aria-hidden="true">+</span>
-          </button>
+            <a  class="block w-full">
+                <button type="button" id="btnLogout"
+                  class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                >
+                  Logout
+                  <span class="ml-2" aria-hidden="true">-></span>
+                </button>
+              </a>
+              
           </div>
           
         </div>
@@ -257,12 +260,15 @@
               </li>
           </ul>
           <div class="px-6 my-6">
-            <button
-              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-            >
-              Create account
-              <span class="ml-2" aria-hidden="true">+</span>
-            </button>
+            <a class="block w-full">
+                <button type="button" id="btnLogout"
+                  class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                >
+                  Logout
+                  <span class="ml-2" aria-hidden="true">-></span>
+                </button>
+              </a>
+              
           </div>
         </div>
       </aside>
@@ -380,7 +386,7 @@
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
                     aria-label="submenu"
                   >
-                    <li class="flex">
+                    <!-- <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                         href="#"
@@ -424,11 +430,10 @@
                         </svg>
                         <span>Settings</span>
                       </a>
-                    </li>
+                    </li> -->
                     <li class="flex">
-                      <a
+                      <button type="button" id="btnLogout"
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="pages/login.html" onclick="logout()"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
@@ -445,7 +450,7 @@
                           ></path>
                         </svg>
                         <span>Logout</span>
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </template>
@@ -644,6 +649,7 @@
 
 
              <!-- Charts -->
+            </div>
             <div class="grid gap-6 mb-8 md:grid-cols-2">
               <!-- Bars chart -->
               <div
@@ -699,8 +705,8 @@
               </div>
             </div>
            </div>
-         </div>
         </main>
+        <script type="module" src="../assets/js/auth.js"></script>
        
   </body>
 

@@ -11,7 +11,7 @@ const logout = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteCookie("Authorization");
-        window.location.href = "./pages/login.html";
+        window.location.href = "../pages/login.html";
       }
     });
   };
