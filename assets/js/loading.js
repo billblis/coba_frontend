@@ -1,18 +1,29 @@
+// refined-loading.js
+
 document.addEventListener("DOMContentLoaded", function () {
-    var loaderWrapper = document.createElement("div");
-    loaderWrapper.id = "loader-wrapper";
-    loaderWrapper.innerHTML = `
-        <div id="loader"></div>
-        <div id="loader"></div>
-        <div id="loader"></div>
-        <div id="loader"></div>
-        <div id="loader"></div>    
-    `;
-    
-    document.body.appendChild(loaderWrapper);
+    const refinedLoaderWrapper = document.createElement("div");
+    refinedLoaderWrapper.classList.add("refined-loader-wrapper");
   
-    setTimeout(function () {
-        loaderWrapper.style.display = 'none';
-    }, 3000);
-    
+    const refinedLoaderContent = document.createElement("div");
+    refinedLoaderContent.classList.add("refined-loader");
+  
+    for (let i = 0; i < 12; i++) {
+      const circle = document.createElement("div");
+      refinedLoaderContent.appendChild(circle);
+    }
+  
+    refinedLoaderWrapper.appendChild(refinedLoaderContent);
+    document.body.appendChild(refinedLoaderWrapper);
+  
+    function showRefinedLoading() {
+      refinedLoaderWrapper.style.display = "flex";
+    }
+  
+    function hideRefinedLoading() {
+      refinedLoaderWrapper.style.display = "none";
+    }
+  
+    showRefinedLoading();
+    setTimeout(hideRefinedLoading, 3000);
   });
+  
