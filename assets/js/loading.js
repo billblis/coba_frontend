@@ -1,29 +1,28 @@
-// refined-loading.js
+// awesome-loading.js
 
 document.addEventListener("DOMContentLoaded", function () {
-    const refinedLoaderWrapper = document.createElement("div");
-    refinedLoaderWrapper.classList.add("refined-loader-wrapper");
-  
-    const refinedLoaderContent = document.createElement("div");
-    refinedLoaderContent.classList.add("refined-loader");
-  
+    const awesomeLoaderWrapper = document.createElement("div");
+    awesomeLoaderWrapper.classList.add("awesome-loader-wrapper");
+
+    const awesomeLoaderContent = document.createElement("div");
+    awesomeLoaderContent.classList.add("awesome-loader");
+
     for (let i = 0; i < 12; i++) {
-      const circle = document.createElement("div");
-      refinedLoaderContent.appendChild(circle);
+        const circle = document.createElement("div");
+        awesomeLoaderContent.appendChild(circle);
     }
-  
-    refinedLoaderWrapper.appendChild(refinedLoaderContent);
-    document.body.appendChild(refinedLoaderWrapper);
-  
-    function showRefinedLoading() {
-      refinedLoaderWrapper.style.display = "flex";
+
+    awesomeLoaderWrapper.appendChild(awesomeLoaderContent);
+    document.body.appendChild(awesomeLoaderWrapper);
+
+    function showAwesomeLoading() {
+        awesomeLoaderWrapper.style.display = "flex";
     }
-  
-    function hideRefinedLoading() {
-      refinedLoaderWrapper.style.display = "none";
+
+    function hideAwesomeLoading() {
+        awesomeLoaderWrapper.style.display = "none";
     }
-  
-    showRefinedLoading();
-    setTimeout(hideRefinedLoading, 3000);
-  });
-  
+
+    showAwesomeLoading();
+    setTimeout(hideAwesomeLoading, 3000);
+});
