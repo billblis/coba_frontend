@@ -16,10 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(awesomeLoaderWrapper);
 
     function showAwesomeLoading() {
+        document.body.style.overflow = "hidden"; // Prevent scrolling while loading
         awesomeLoaderWrapper.style.display = "flex";
     }
 
     function hideAwesomeLoading() {
+        document.body.style.overflow = ""; // Enable scrolling after loading
         awesomeLoaderWrapper.style.display = "none";
     }
 
