@@ -3,4 +3,4 @@ defaults:
       path: ""
     values:
       layout: single
-      permalink: /pages/404.html
+      permalink: pages/404.html
