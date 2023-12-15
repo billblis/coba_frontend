@@ -20,6 +20,8 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/init-alpine.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="assets/css/loading.css">
+    <script type="module" src="assets/js/loading.js"></script>
   </head>
   <body>
     <div
@@ -123,12 +125,14 @@
             </li>
           </ul>
           <div class="px-6 my-6">
-            <button onclick="logout()"
-            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-          >
-            Logout
-            <span class="ml-2" aria-hidden="true">+</span>
-          </button>
+            <a  class="block w-full">
+                <button type="button" id="btnLogout"
+                  class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                >
+                  Logout
+                  <span class="ml-2" aria-hidden="true">-></span>
+                </button>
+            </a>
           </div>
         </div>
       </aside>
@@ -252,12 +256,15 @@
             </li>
           </ul>
           <div class="px-6 my-6">
-            <button
-              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-            >
-              Create account
-              <span class="ml-2" aria-hidden="true">+</span>
-            </button>
+            <a href="#"  class="block w-full">
+                <button type="button" id="btnLogout"
+                  class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                >
+                  Logout
+                  <span class="ml-2" aria-hidden="true">-></span>
+                </button>
+              </a>
+              
           </div>
         </div>
       </aside>
@@ -365,7 +372,7 @@
                     aria-hidden="true"
                   />
                 </button>
-                <template x-if="isProfileMenuOpen">
+                <!-- <template x-if="isProfileMenuOpen">
                   <ul
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100"
@@ -420,7 +427,7 @@
                         <span>Settings</span>
                       </a>
                     </li> -->
-                    <li class="flex">
+                    <!-- <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                         href="#"
@@ -441,9 +448,9 @@
                         </svg>
                         <span>Log out</span>
                       </a>
-                    </li>
-                  </ul>
-                </template>
+                    </li> -->
+                  <!-- </ul>
+                </template>  -->
               </li>
             </ul>
           </div>
@@ -543,6 +550,7 @@
     </div>
     <script type="module" src="assets/js/insertPengeluaran.js"></script>
     <script type="module" src="assets/js/auth.js"></script>
+    <script type="module" src="assets/js/logout.js"></script>
 
     <!-- <script>
         function formatRupiah(input) {

@@ -26,6 +26,8 @@
     <script  src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/charts-bars.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/charts-lines.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="assets/css/loading.css">
+    <script type="module" src="assets/js/loading.js"></script>
   <body>
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
@@ -376,7 +378,7 @@
                     aria-hidden="true"
                   />
                 </button>
-                <template x-if="isProfileMenuOpen">
+                <!-- <template x-if="isProfileMenuOpen">
                   <ul
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100"
@@ -385,7 +387,7 @@
                     @keydown.escape="closeProfileMenu"
                     class="absolute right-0 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
                     aria-label="submenu"
-                  >
+                  > -->
                     <!-- <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
@@ -431,7 +433,7 @@
                         <span>Settings</span>
                       </a>
                     </li> -->
-                    <li class="flex">
+                    <!-- <li class="flex">
                       <button type="button" id="btnLogout"
                       class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" 
                     >
@@ -453,7 +455,7 @@
                     </button>
                     </li>
                   </ul>
-                </template>
+                </template> -->
               </li>
             </ul>
           </div>
@@ -805,7 +807,7 @@
     <script type="module" src="assets/js/getPengeluaran.js"></script>
     <script type="module" src="assets/js/deletePengeluaran.js"></script>
     <script type="module" src="assets/js/auth.js"></script>
-    <script type="module" src="../assets/js/auth.js"></script>
+    <script type="module" src="assets/js/logout.js"></script>
   </body>
 
 </html>

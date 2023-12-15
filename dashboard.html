@@ -26,6 +26,9 @@
     <script  src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/charts-bars.js" type="module"></script>
     <script  src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/charts-pie.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <link rel="stylesheet" href="assets/css/loading.css">
+    <script type="module" src="assets/js/loading.js"></script>
   <body>
     <div
       class="flex h-screen bg-gray-50 dark:bg-gray-900"
@@ -377,7 +380,7 @@
                     aria-hidden="true"
                   />
                 </button>
-                <template x-if="isProfileMenuOpen">
+                <!-- <template x-if="isProfileMenuOpen">
                   <ul
                     x-transition:leave="transition ease-in duration-150"
                     x-transition:leave-start="opacity-100"
@@ -432,7 +435,7 @@
                         <span>Settings</span>
                       </a>
                     </li> -->
-                    <li class="flex">
+                    <!-- <li class="flex">
                       <button type="button" id="btnLogout"
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200" 
                       >
@@ -452,9 +455,9 @@
                         </svg>
                         <span>Logout</span>
                       </button>
-                    </li>
-                  </ul>
-                </template>
+                    </li> -->
+                  <!-- </ul>
+                </template> -->
               </li>
             </ul>
           </div>
@@ -486,7 +489,7 @@
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                  <span id="totalIncome">Rp. 0</span>
+                  <span id="incomeCounter">Rp. 0</span>
                   </p>
                 </div>
               </div>
@@ -1028,7 +1031,6 @@
     </div>
 
     <script type="module" src="assets/js/logout.js"></script>
-    <script type="module" src="assets/js/getPemasukanjs"></script>
       
 <!-- <script>
   function formatRupiah(angka) {
