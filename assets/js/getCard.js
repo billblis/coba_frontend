@@ -81,29 +81,26 @@ const displayRemainingBalance = (totalPemasukan, totalPengeluaran) => {
 };
 
 // Mendapatkan data pemasukan dan menampilkannya
-getDataWithToken(targetUrlPemasukan)
-    .then(resultPemasukan => {
-        if (resultPemasukan.length > 0) {
-            resultPemasukan.forEach(displayPemasukan);
-            const totalPemasukan = displayTotalPemasukan(resultPemasukan);
+getDataWithToken(targetUrlPemasukan, (resultPemasukan) => {
+    if (resultPemasukan) {
+        resultPemasukan.forEach(displayPemasukan);
+        const totalPemasukan = displayTotalPemasukan(resultPemasukan);
 
-            // Mendapatkan data pengeluaran setelah mendapatkan data pemasukan
-            getDataWithToken(targetUrlPengeluaran)
-                .then(resultPengeluaran => {
-                    if (resultPengeluaran.length > 0) {
-                        resultPengeluaran.forEach(displayPengeluaran);
-                        const totalPengeluaran = displayTotalPengeluaran(resultPengeluaran);
+        // Mendapatkan data pengeluaran setelah mendapatkan data pemasukan
+        getDataWithToken(targetUrlPengeluaran, (resultPengeluaran) => {
+            if (resultPengeluaran) {
+                resultPengeluaran.forEach(displayPengeluaran);
+                const totalPengeluaran = displayTotalPengeluaran(resultPengeluaran);
 
-                        // Menampilkan sisa saldo
-                        displayRemainingBalance(totalPemasukan, totalPengeluaran);
-                    } else {
-                        console.error("No data received for pengeluaran");
-                    }
-                })
-                .catch(error => console.error("Error fetching pengeluaran data:", error));
-        } else {
-            console.error("No data received for pemasukan");
-        }
-    })
-    .catch(error => console.error("Error fetching pemasukan data:", error));
+                // Menampilkan sisa saldo
+                displayRemainingBalance(totalPemasukan, totalPengeluaran);
+            } else {
+                console.warn("No data received for", targetUrlPengeluaran);
+            }
+        });
+    } else {
+        console.warn("No data received for", targetUrlPemasukan);
+    }
+});
+
 
