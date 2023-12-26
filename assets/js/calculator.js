@@ -1,4 +1,4 @@
 // Calculator.js
-export function calculateSisaSaldo(totalPemasukan, totalPengeluaran) {
+export function calculateRemainingBalance(totalPemasukan, totalPengeluaran) {
     return totalPemasukan - totalPengeluaran;
 }
