@@ -1,4 +1,4 @@
-// calculator.js
-export function calculateSisaSaldo(pemasukan, pengeluaran) {
-    return pemasukan - pengeluaran;
+// Calculator.js
+export function calculateSisaSaldo(totalPemasukan, totalPengeluaran) {
+    return totalPemasukan - totalPengeluaran;
 }
