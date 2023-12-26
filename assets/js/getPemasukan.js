@@ -45,7 +45,7 @@ const responseData = (result) => {
     }
 }
 
-const rData = (result) => {
+const rCard = (result) => {
     if (result.status === true) {
         // Calculate the total sum of jumlah_masuk
         const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
@@ -53,13 +53,18 @@ const rData = (result) => {
         // Update the HTML element with the calculated sum
         document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
 
-        // Iterate through the data and add rows to the table
-        result.data.forEach(dataPemasukan);
+        // // Iterate through the data and add rows to the table
+        // result.data.forEach(dataPemasukan);
 
         console.log(result);
     }
 }
 
+// Panggil pertama kali untuk memastikan urutan pemanggilan
+getWithToken(target_url, responseData).then(() => {
+    // Panggil kedua kalinya setelah yang pertama selesai
+    getWithToken(target_url, rCard);
+});
 
-getWithToken(target_url, responseData);
-getWithToken(target_url, rData);
+// getWithToken(target_url, responseData);
+// getWithToken(target_url, rCard);
