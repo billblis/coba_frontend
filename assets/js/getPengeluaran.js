@@ -18,7 +18,7 @@ function getWithToken(target_url, responseFunction) {
         .catch(error => console.log('error', error));
 }
 
-const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran";
+const url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran";
 
 const dataPengeluaran  = (value) => {
     const data = formPengeluaran
@@ -34,7 +34,7 @@ const dataPengeluaran  = (value) => {
 }
 
 
-const responseData = (result) => {
+const responseData2 = (result) => {
     if (result.status === true) {
         result.data.forEach(dataPengeluaran);
 
@@ -42,7 +42,7 @@ const responseData = (result) => {
     }
 }
 
-const rCard = (result) => {
+const rCard2 = (result) => {
     if (result.status === true) {
         // Calculate the total sum of jumlah_masuk
         const totalPengeluaran = result.data.reduce((sum, item) => sum + item.jumlah_keluar, 0);
@@ -57,5 +57,5 @@ const rCard = (result) => {
     }
 }
 
-getWithToken(target_url, responseData);
-getWithToken(target_url, rCard);
+getWithToken(url, responseData2);
+getWithToken(url, rCard2);
