@@ -1,3 +1,5 @@
+import {getCookie } from "https://jscroot.github.io/cookie/croot.js";
+
 // Definisi fungsi getWithToken
 function getWithToken(target_url, responseFunction) {
     const myHeaders = new Headers();
