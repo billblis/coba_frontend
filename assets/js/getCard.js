@@ -95,11 +95,11 @@ getDataWithToken(targetUrlPemasukan, (resultPemasukan) => {
                 // Menampilkan sisa saldo
                 displayRemainingBalance(totalPemasukan, totalPengeluaran);
             } else {
-                console.warn("No data received for", targetUrlPengeluaran);
+                console.error("No data received for pengeluaran");
             }
         });
     } else {
-        console.warn("No data received for", targetUrlPemasukan);
+        console.error("No data received for pemasukan");
     }
 });
 

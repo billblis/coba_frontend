@@ -19,13 +19,16 @@ export const getWithToken = (target_url, responseFunction) => {
     };
 
     fetch(target_url, requestOptions)
-        .then(response => response.text())
-        .then(result => {
-            console.log("API Response:", result); // Log the API response
-            return responseFunction(JSON.parse(result));
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
         })
-        .catch(error => console.log('error', error));
+        .then(result => responseFunction(JSON.parse(result)))
+        .catch(error => console.error("Error in API response:", error));
 };
+
 
 
 
