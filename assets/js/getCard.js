@@ -1,4 +1,4 @@
-// common.js
+// card.js
 import { getWithToken } from "./api.js";
 import { formPemasukan, formPengeluaran } from "./table.js";
 import { addInner } from "https://jscroot.github.io/element/croot.js";
@@ -7,7 +7,7 @@ import { calculateRemainingBalance } from "./calculator.js";
 const targetUrlPemasukan = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
 const targetUrlPengeluaran = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran";
 
-// Fungsi untuk mendapatkan data dengan token
+// Function to get data with token
 function getDataWithToken(targetUrl, responseFunction) {
     getWithToken(targetUrl, (result) => {
         if (result.status === true) {
@@ -16,7 +16,7 @@ function getDataWithToken(targetUrl, responseFunction) {
     });
 }
 
-// Fungsi untuk menampilkan data pemasukan ke tabel
+// Function to display pemasukan
 const displayPemasukan = (value) => {
     const data = formPemasukan
         .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
@@ -30,7 +30,7 @@ const displayPemasukan = (value) => {
     addInner("tablePemasukan", data);
 };
 
-// Fungsi untuk menampilkan data pengeluaran ke tabel
+// Function to display pengeluaran
 const displayPengeluaran = (value) => {
     const data = formPengeluaran
         .replace("#TANGGAL_KELUAR#", value.tanggal_keluar)
@@ -44,42 +44,49 @@ const displayPengeluaran = (value) => {
     addInner("tablePengeluaran", data);
 };
 
-// Fungsi untuk menampilkan total pemasukan di card
+// Function to display total pemasukan in card
 const displayTotalPemasukan = (dataPemasukan) => {
     const totalPemasukan = dataPemasukan.reduce((sum, item) => sum + item.jumlah_masuk, 0);
     document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
     return totalPemasukan;
 };
 
-// Fungsi untuk menampilkan total pengeluaran di card
+// Function to display total pengeluaran in card
 const displayTotalPengeluaran = (dataPengeluaran) => {
     const totalPengeluaran = dataPengeluaran.reduce((sum, item) => sum + item.jumlah_keluar, 0);
     document.getElementById('expensesCounter').innerText = `Rp. ${totalPengeluaran}`;
     return totalPengeluaran;
 };
 
-// Fungsi untuk menampilkan sisa saldo di card
+// Function to display remaining balance in card
 const displayRemainingBalance = (totalPemasukan, totalPengeluaran) => {
-    const remainingBalance = calculateRemainingBalance(totalPemasukan, totalPengeluaran);
-    document.getElementById('remainingBalance').innerText = `Rp. ${remainingBalance}`;
+  const remainingBalance = calculateRemainingBalance(totalPemasukan, totalPengeluaran);
+  console.log("Remaining Balance:", remainingBalance);
 
-    // Tampilkan alert jika saldo tidak mencukupi
+  const remainingBalanceElement = document.getElementById('remainingBalance');
+  if (remainingBalanceElement) {
+    remainingBalanceElement.innerText = `Rp. ${remainingBalance}`;
+
+    // Show alert if remaining balance is negative
     if (remainingBalance < 0) {
-        alert('Saldo tidak mencukupi!');
+      alert('Saldo tidak mencukupi!');
     }
+  } else {
+    console.error("Element with ID 'remainingBalance' not found");
+  }
 };
 
-// Mendapatkan data pemasukan dan menampilkannya
+// Get pemasukan data and display it
 getDataWithToken(targetUrlPemasukan, (resultPemasukan) => {
     resultPemasukan.forEach(displayPemasukan);
     const totalPemasukan = displayTotalPemasukan(resultPemasukan);
-
+  
     // Mendapatkan data pengeluaran setelah mendapatkan data pemasukan
     getDataWithToken(targetUrlPengeluaran, (resultPengeluaran) => {
-        resultPengeluaran.forEach(displayPengeluaran);
-        const totalPengeluaran = displayTotalPengeluaran(resultPengeluaran);
-
-        // Menampilkan sisa saldo
-        displayRemainingBalance(totalPemasukan, totalPengeluaran);
+      resultPengeluaran.forEach(displayPengeluaran);
+      const totalPengeluaran = displayTotalPengeluaran(resultPengeluaran);
+  
+      // Menampilkan sisa saldo
+      displayRemainingBalance(totalPemasukan, totalPengeluaran);
     });
-});
+  });
