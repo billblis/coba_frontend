@@ -1,13 +1,7 @@
-// common.js
-import { getWithToken } from "./api.js";
 import {getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { addInner, formPemasukan, formPengeluaran } from "./table.js";
-import { calculateRemainingBalance } from "./calculator.js";
+import { addInner } from "https://jscroot.github.io/element/croot.js";
+import { formPengeluaran } from "./table.js";
 
-const targetUrlPemasukan = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
-const targetUrlPengeluaran = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran";
-
-// Fungsi untuk mendapatkan data dengan token
 function getWithToken(target_url, responseFunction) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", getCookie("Authorization"));
@@ -24,70 +18,44 @@ function getWithToken(target_url, responseFunction) {
         .catch(error => console.log('error', error));
 }
 
-// Fungsi untuk menampilkan data pemasukan ke tabel
-const displayPemasukan = (value) => {
-    const data = formPemasukan
-        .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
-        .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
-        .replace("#SUMBER#", value.sumber)
-        .replace("#DESKRIPSI#", value.deskripsi)
-        .replace("#IDEDIT#", value._id)
-        .replace("#IDHAPUS#", value._id)
-        .replace("#DELETE#", value._id);
+const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran";
 
-    addInner("tablePemasukan", data);
-};
-
-// Fungsi untuk menampilkan data pengeluaran ke tabel
-const displayPengeluaran = (value) => {
+const dataPengeluaran  = (value) => {
     const data = formPengeluaran
-        .replace("#TANGGAL_KELUAR#", value.tanggal_keluar)
-        .replace("#JUMLAH_KELUAR#", value.jumlah_keluar)
-        .replace("#SUMBER#", value.sumber)
-        .replace("#DESKRIPSI#", value.deskripsi)
-        .replace("#IDEDIT#", value._id)
-        .replace("#IDHAPUS#", value._id)
-        .replace("#DELETE#", value._id);
+    .replace("#TANGGAL_KELUAR#", value.tanggal_keluar)
+    .replace("#JUMLAH_KELUAR#", value.jumlah_keluar)
+    .replace("#SUMBER#", value.sumber)
+    .replace("#DESKRIPSI#", value.deskripsi)
+    .replace("#IDEDIT#", value._id)
+    .replace("#IDHAPUS#", value._id)
+    .replace("#DELETE#", value._id);
 
     addInner("tablePengeluaran", data);
-};
+}
 
-// Fungsi untuk menampilkan total pemasukan di card
-const displayTotalPemasukan = (dataPemasukan) => {
-    const totalPemasukan = dataPemasukan.reduce((sum, item) => sum + item.jumlah_masuk, 0);
-    document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
-    return totalPemasukan;
-};
 
-// Fungsi untuk menampilkan total pengeluaran di card
-const displayTotalPengeluaran = (dataPengeluaran) => {
-    const totalPengeluaran = dataPengeluaran.reduce((sum, item) => sum + item.jumlah_keluar, 0);
-    document.getElementById('expensesCounter').innerText = `Rp. ${totalPengeluaran}`;
-    return totalPengeluaran;
-};
+const responseData = (result) => {
+    if (result.status === true) {
+        result.data.forEach(dataPengeluaran);
 
-// Fungsi untuk menampilkan sisa saldo di card
-const displayRemainingBalance = (totalPemasukan, totalPengeluaran) => {
-    const remainingBalance = calculateRemainingBalance(totalPemasukan, totalPengeluaran);
-    document.getElementById('remainingBalance').innerText = `Rp. ${remainingBalance}`;
-
-    // Tampilkan alert jika saldo tidak mencukupi
-    if (remainingBalance < 0) {
-        alert('Saldo tidak mencukupi!');
+        console.log(result);
     }
-};
+}
 
-// Mendapatkan data pemasukan dan menampilkannya
-getDataWithToken(targetUrlPemasukan, (resultPemasukan) => {
-    resultPemasukan.forEach(displayPemasukan);
-    const totalPemasukan = displayTotalPemasukan(resultPemasukan);
+const rCardPengeluaran = (result) => {
+    if (result.status === true) {
+        // Calculate the total sum of jumlah_masuk
+        const totalPengeluaran = result.data.reduce((sum, item) => sum + item.jumlah_keluar, 0);
 
-    // Mendapatkan data pengeluaran setelah mendapatkan data pemasukan
-    getDataWithToken(targetUrlPengeluaran, (resultPengeluaran) => {
-        resultPengeluaran.forEach(displayPengeluaran);
-        const totalPengeluaran = displayTotalPengeluaran(resultPengeluaran);
+        // Update the HTML element with the calculated sum
+        document.getElementById('expensesCounter').innerText = `Rp. ${totalPengeluaran}`;
 
-        // Menampilkan sisa saldo
-        displayRemainingBalance(totalPemasukan, totalPengeluaran);
-    });
-});
+        // // Iterate through the data and add rows to the table
+        result.data.forEach(dataPengeluaran);
+
+        console.log(result);
+    }
+}
+
+getWithToken(target_url, responseData);
+getWithToken(target_url, rCardPengeluaran);
