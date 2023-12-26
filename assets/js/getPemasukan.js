@@ -36,7 +36,6 @@ const dataPemasukan  = (value) => {
 
 const responseData = (result) => {
     if (result.status === true) {
-        result.data.forEach(dataPemasukan);
                 // Calculate the total sum of jumlah_masuk
                 const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
         
@@ -47,8 +46,6 @@ const responseData = (result) => {
                 result.data.forEach(dataPemasukan);
         
                 console.log(result);
-
-        console.log(result);
     }
 }
 
