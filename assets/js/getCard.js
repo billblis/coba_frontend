@@ -8,18 +8,21 @@ const targetUrlPemasukan = "https://asia-southeast2-xenon-hawk-402203.cloudfunct
 const targetUrlPengeluaran = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran";
 
 // Fungsi untuk mendapatkan data dengan token
-async function getDataWithToken(targetUrl) {
+async function getDataWithToken(targetUrl, responseFunction) {
     try {
         const result = await getWithToken(targetUrl);
-        if (result && result.status === true) {
-            return result.data;
+        if (result.success) {
+            const data = result.data;
+            if (data && data.length > 0) {
+                responseFunction(data);
+            } else {
+                console.warn("No data received for", targetUrl);
+            }
         } else {
-            console.error("Error in API response:", result);
-            return [];
+            console.error("Error in API response:", result.error);
         }
     } catch (error) {
         console.error("Error fetching data:", error);
-        return [];
     }
 }
 
