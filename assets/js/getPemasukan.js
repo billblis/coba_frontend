@@ -21,8 +21,6 @@ function getWithToken(target_url, responseFunction) {
 const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
 
 const dataPemasukan  = (value) => {
-    document.getElementById("jmlpemasukan").innerHTML =
-    "" + MyvarMahasiswa.length + " Data";
     const data = formPemasukan
     .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
     .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
@@ -38,23 +36,22 @@ const dataPemasukan  = (value) => {
 
 const responseData = (result) => {
     if (result.status === true) {
-        let totalIncome = 0;
-
-        result.data.forEach((value) => {
-            dataPemasukan(value);
-            totalIncome += value.jumlah_masuk;
-        });
-
-        // Update the total income in the HTML element
-        const totalIncomeElement = document.getElementById("totalIncome");
-        if (totalIncomeElement) {
-            totalIncomeElement.textContent = `Rp. ${totalIncome}`;
-        }
+        result.data.forEach(dataPemasukan);
+                // Calculate the total sum of jumlah_masuk
+                const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
+        
+                // Update the HTML element with the calculated sum
+                document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
+        
+                // Iterate through the data and add rows to the table
+                result.data.forEach(dataPemasukan);
+        
+                console.log(result);
 
         console.log(result);
     }
 }
 
+
+
 getWithToken(target_url, responseData);
-
-
