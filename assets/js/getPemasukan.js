@@ -2,6 +2,7 @@ import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { addInner } from "https://jscroot.github.io/element/croot.js";
 import { formPemasukan } from "./table.js";
 
+
 function getWithToken(target_url, responseFunction) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", getCookie("Authorization"));
@@ -20,92 +21,36 @@ function getWithToken(target_url, responseFunction) {
 
 const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
 
-// Fungsi untuk memproses setiap data pemasukan
-function dataPemasukan(value) {
-    const rowData = formPemasukan
-        .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
-        .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
-        .replace("#SUMBER#", value.sumber)
-        .replace("#DESKRIPSI#", value.deskripsi)
-        .replace("#IDEDIT#", value._id)
-        .replace("#IDHAPUS#", value._id)
-        .replace("#DELETE#", value._id);
+const dataPemasukan  = (value) => {
+    const data = formPemasukan
+    .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
+    .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
+    .replace("#SUMBER#", value.sumber)
+    .replace("#DESKRIPSI#", value.deskripsi)
+    .replace("#IDEDIT#", value._id)
+    .replace("#IDHAPUS#", value._id)
+    .replace("#DELETE#", value._id);
 
-    // Append the row HTML to the table
-    document.getElementById('tablePemasukan').innerHTML += rowData;
+    addInner("tablePemasukan", data);
 }
 
-// Fungsi untuk memperbarui UI
-function updateUI(result) {
+
+const responseData = (result) => {
     if (result.status === true) {
-        // Clear existing content in the table
-        document.getElementById('tablePemasukan').innerHTML = '';
-
-        // Iterate through the data and add rows to the table
-        result.data.forEach(dataPemasukan);
-
-        // Calculate the total sum of jumlah_masuk
-        const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
-
-        // Update the HTML element with the calculated sum
-        document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
-
-        console.log(result);
+                // Iterate through the data and add rows to the table
+                result.data.forEach(dataPemasukan);
+                
+                // Calculate the total sum of jumlah_masuk
+                const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
+        
+                // Update the HTML element with the calculated sum
+                document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
+        
+        
+                console.log(result);
     }
 }
 
-// Call the function to fetch data and update UI
-getWithToken(target_url, updateUI);
 
 
-// function getWithToken(target_url, responseFunction) {
-//     const myHeaders = new Headers();
-//     myHeaders.append("Authorization", getCookie("Authorization"));
-
-//     const requestOptions = {
-//         method: 'GET',
-//         headers: myHeaders,
-//         redirect: 'follow'
-//     };
-
-//     fetch(target_url, requestOptions)
-//         .then(response => response.text())
-//         .then(result => responseFunction(JSON.parse(result)))
-//         .catch(error => console.log('error', error));
-// }
-
-// const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
-
-// const dataPemasukan  = (value) => {
-//     const data = formPemasukan
-//     .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
-//     .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
-//     .replace("#SUMBER#", value.sumber)
-//     .replace("#DESKRIPSI#", value.deskripsi)
-//     .replace("#IDEDIT#", value._id)
-//     .replace("#IDHAPUS#", value._id)
-//     .replace("#DELETE#", value._id);
-
-//     addInner("tablePemasukan", data);
-// }
-
-
-// // const responseData = (result) => {
-// //     if (result.status === true) {
-// //                 // Iterate through the data and add rows to the table
-// //                 result.data.forEach(dataPemasukan);
-                
-// //                 // Calculate the total sum of jumlah_masuk
-// //                 const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
-        
-// //                 // Update the HTML element with the calculated sum
-// //                 document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
-        
-        
-// //                 console.log(result);
-// //     }
-// // }
-
-
-
-// getWithToken(target_url, responseData);
+getWithToken(target_url, responseData);
