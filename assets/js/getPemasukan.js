@@ -21,57 +21,34 @@ function getWithToken(target_url, responseFunction) {
 
 const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
 
-// const dataPemasukan  = (value) => {
-//     const data = formPemasukan
-//     .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
-//     .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
-//     .replace("#SUMBER#", value.sumber)
-//     .replace("#DESKRIPSI#", value.deskripsi)
-//     .replace("#IDEDIT#", value._id)
-//     .replace("#IDHAPUS#", value._id)
-//     .replace("#DELETE#", value._id);
-
-//     addInner("tablePemasukan", data);
-// }
-
-const dataPemasukan = (value) => {
+const dataPemasukan  = (value) => {
     const data = formPemasukan
-        .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
-        .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
-        .replace("#SUMBER#", value.sumber)
-        .replace("#DESKRIPSI#", value.deskripsi)
-        .replace("#IDEDIT#", value._id)
-        .replace("#IDHAPUS#", value._id)
-        .replace("#DELETE#", value._id);
-
-    console.log('HTML row data:', data);
+    .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
+    .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
+    .replace("#SUMBER#", value.sumber)
+    .replace("#DESKRIPSI#", value.deskripsi)
+    .replace("#IDEDIT#", value._id)
+    .replace("#IDHAPUS#", value._id)
+    .replace("#DELETE#", value._id);
 
     addInner("tablePemasukan", data);
-};
+}
 
-
-// const responseData = (result) => {
-//     if (result.status === true) {
-//         // Calculate the total sum of jumlah_masuk
-//         const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
-
-//         // Update the HTML element with the calculated sum
-//         document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
-
-//         // Iterate through the data and add rows to the table
-//         result.data.forEach(dataPemasukan);
-
-//         console.log(result);
-//     }
-// }
 
 const responseData = (result) => {
     if (result.status === true) {
-        // Log data untuk memeriksa apakah data dihasilkan dengan benar
-        console.log('Data from the server:', result.data);
 
+        // Iterate through the data and add rows to the table
+        result.data.forEach(dataPemasukan);
+
+        console.log(result);
+    }
+}
+
+const rData = (result) => {
+    if (result.status === true) {
         // Calculate the total sum of jumlah_masuk
-        const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk);
+        const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
 
         // Update the HTML element with the calculated sum
         document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
@@ -85,3 +62,4 @@ const responseData = (result) => {
 
 
 getWithToken(target_url, responseData);
+getWithToken(target_url, rData);
