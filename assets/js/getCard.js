@@ -82,13 +82,13 @@ const displayRemainingBalance = (totalPemasukan, totalPengeluaran) => {
 
 // Mendapatkan data pemasukan dan menampilkannya
 getDataWithToken(targetUrlPemasukan, (resultPemasukan) => {
-    if (resultPemasukan) {
+    if (resultPemasukan && resultPemasukan.length > 0) {
         resultPemasukan.forEach(displayPemasukan);
         const totalPemasukan = displayTotalPemasukan(resultPemasukan);
 
         // Mendapatkan data pengeluaran setelah mendapatkan data pemasukan
         getDataWithToken(targetUrlPengeluaran, (resultPengeluaran) => {
-            if (resultPengeluaran) {
+            if (resultPengeluaran && resultPengeluaran.length > 0) {
                 resultPengeluaran.forEach(displayPengeluaran);
                 const totalPengeluaran = displayTotalPengeluaran(resultPengeluaran);
 
@@ -102,5 +102,6 @@ getDataWithToken(targetUrlPemasukan, (resultPemasukan) => {
         console.warn("No data received for", targetUrlPemasukan);
     }
 });
+
 
 
