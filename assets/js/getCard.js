@@ -1,6 +1,7 @@
 // common.js
 import { getWithToken } from "./api.js";
-import { addInner, formPemasukan, formPengeluaran } from "./table.js";
+import { formPemasukan, formPengeluaran } from "./table.js";
+import { addInner } from "https://jscroot.github.io/element/croot.js";
 import { calculateRemainingBalance } from "./calculator.js";
 
 const targetUrlPemasukan = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
