@@ -71,7 +71,7 @@ const responseData = (result) => {
         console.log('Data from the server:', result.data);
 
         // Calculate the total sum of jumlah_masuk
-        const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
+        const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk);
 
         // Update the HTML element with the calculated sum
         document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
