@@ -35,8 +35,26 @@ const dataPemasukan  = (value) => {
 }
 
 
+// const responseData = (result) => {
+//     if (result.status === true) {
+//         // Calculate the total sum of jumlah_masuk
+//         const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
+
+//         // Update the HTML element with the calculated sum
+//         document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
+
+//         // Iterate through the data and add rows to the table
+//         result.data.forEach(dataPemasukan);
+
+//         console.log(result);
+//     }
+// }
+
 const responseData = (result) => {
     if (result.status === true) {
+        // Log data untuk memeriksa apakah data dihasilkan dengan benar
+        console.log('Data from the server:', result.data);
+
         // Calculate the total sum of jumlah_masuk
         const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
 
@@ -49,7 +67,6 @@ const responseData = (result) => {
         console.log(result);
     }
 }
-
 
 
 getWithToken(target_url, responseData);
