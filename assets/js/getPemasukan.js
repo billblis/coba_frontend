@@ -60,11 +60,6 @@ const rCard = (result) => {
     }
 }
 
-// Panggil pertama kali untuk memastikan urutan pemanggilan
-getWithToken(target_url, responseData).then(() => {
-    // Panggil kedua kalinya setelah yang pertama selesai
-    getWithToken(target_url, rCard);
-});
 
-// getWithToken(target_url, responseData);
-// getWithToken(target_url, rCard);
+getWithToken(target_url, responseData);
+getWithToken(target_url, rCard);
