@@ -42,4 +42,20 @@ const responseData = (result) => {
     }
 }
 
+const rCard = (result) => {
+    if (result.status === true) {
+        // Calculate the total sum of jumlah_masuk
+        const totalPengeluaran = result.data.reduce((sum, item) => sum + item.jumlah_keluar, 0);
+
+        // Update the HTML element with the calculated sum
+        document.getElementById('expensesCounter').innerText = `Rp. ${totalPengeluaran}`;
+
+        // // Iterate through the data and add rows to the table
+        result.data.forEach(dataPengeluaran);
+
+        console.log(result);
+    }
+}
+
 getWithToken(target_url, responseData);
+getWithToken(target_url, rCard);
