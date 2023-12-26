@@ -1,4 +1,7 @@
 import {getCookie } from "https://jscroot.github.io/cookie/croot.js";
+import { addInner } from "https://jscroot.github.io/element/croot.js";
+import { formPemasukan } from "./table.js";
+import { formPengeluaran } from "./table.js";
 
 // Definisi fungsi getWithToken
 function getWithToken(target_url, responseFunction) {
