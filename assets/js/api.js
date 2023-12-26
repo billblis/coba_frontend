@@ -8,31 +8,25 @@ export const getCookie = (name) => {
 
 // api.js
 
-export const getWithToken = async (target_url) => {
-    try {
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", getCookie("Authorization"));
+export const getWithToken = (target_url, responseFunction) => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", getCookie("Authorization"));
 
-        const requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+    const requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
 
-        const response = await fetch(target_url, requestOptions);
-        const result = await response.json();
-
-        if (response.ok) {
-            return { success: true, data: result };
-        } else {
-            console.error("Error in API response:", result);
-            return { success: false, error: result };
-        }
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return { success: false, error: error };
-    }
+    fetch(target_url, requestOptions)
+        .then(response => response.text())
+        .then(result => {
+            console.log("API Response:", result); // Log the API response
+            return responseFunction(JSON.parse(result));
+        })
+        .catch(error => console.log('error', error));
 };
+
 
 
 export const post = (target_url, datajson, responseFunction) => {
