@@ -21,18 +21,33 @@ function getWithToken(target_url, responseFunction) {
 
 const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
 
-const dataPemasukan  = (value) => {
+// const dataPemasukan  = (value) => {
+//     const data = formPemasukan
+//     .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
+//     .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
+//     .replace("#SUMBER#", value.sumber)
+//     .replace("#DESKRIPSI#", value.deskripsi)
+//     .replace("#IDEDIT#", value._id)
+//     .replace("#IDHAPUS#", value._id)
+//     .replace("#DELETE#", value._id);
+
+//     addInner("tablePemasukan", data);
+// }
+
+const dataPemasukan = (value) => {
     const data = formPemasukan
-    .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
-    .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
-    .replace("#SUMBER#", value.sumber)
-    .replace("#DESKRIPSI#", value.deskripsi)
-    .replace("#IDEDIT#", value._id)
-    .replace("#IDHAPUS#", value._id)
-    .replace("#DELETE#", value._id);
+        .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
+        .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
+        .replace("#SUMBER#", value.sumber)
+        .replace("#DESKRIPSI#", value.deskripsi)
+        .replace("#IDEDIT#", value._id)
+        .replace("#IDHAPUS#", value._id)
+        .replace("#DELETE#", value._id);
+
+    console.log('HTML row data:', data);
 
     addInner("tablePemasukan", data);
-}
+};
 
 
 // const responseData = (result) => {
