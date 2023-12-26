@@ -9,12 +9,20 @@ const targetUrlPengeluaran = "https://asia-southeast2-xenon-hawk-402203.cloudfun
 
 // Fungsi untuk mendapatkan data dengan token
 async function getDataWithToken(targetUrl) {
-    const result = await getWithToken(targetUrl);
-    if (result.status === true) {
-        return result.data;
+    try {
+        const result = await getWithToken(targetUrl);
+        if (result && result.status === true) {
+            return result.data;
+        } else {
+            console.error("Error in API response:", result);
+            return [];
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
     }
-    return [];
 }
+
 
 // Fungsi untuk menampilkan data pemasukan ke tabel
 const displayPemasukan = (value) => {
@@ -72,16 +80,27 @@ const displayRemainingBalance = (totalPemasukan, totalPengeluaran) => {
 // Mendapatkan data pemasukan dan menampilkannya
 getDataWithToken(targetUrlPemasukan)
     .then(resultPemasukan => {
-        resultPemasukan.forEach(displayPemasukan);
-        const totalPemasukan = displayTotalPemasukan(resultPemasukan);
+        if (resultPemasukan.length > 0) {
+            resultPemasukan.forEach(displayPemasukan);
+            const totalPemasukan = displayTotalPemasukan(resultPemasukan);
 
-        // Mendapatkan data pengeluaran setelah mendapatkan data pemasukan
-        getDataWithToken(targetUrlPengeluaran)
-            .then(resultPengeluaran => {
-                resultPengeluaran.forEach(displayPengeluaran);
-                const totalPengeluaran = displayTotalPengeluaran(resultPengeluaran);
+            // Mendapatkan data pengeluaran setelah mendapatkan data pemasukan
+            getDataWithToken(targetUrlPengeluaran)
+                .then(resultPengeluaran => {
+                    if (resultPengeluaran.length > 0) {
+                        resultPengeluaran.forEach(displayPengeluaran);
+                        const totalPengeluaran = displayTotalPengeluaran(resultPengeluaran);
 
-                // Menampilkan sisa saldo
-                displayRemainingBalance(totalPemasukan, totalPengeluaran);
-            });
-    });
+                        // Menampilkan sisa saldo
+                        displayRemainingBalance(totalPemasukan, totalPengeluaran);
+                    } else {
+                        console.error("No data received for pengeluaran");
+                    }
+                })
+                .catch(error => console.error("Error fetching pengeluaran data:", error));
+        } else {
+            console.error("No data received for pemasukan");
+        }
+    })
+    .catch(error => console.error("Error fetching pemasukan data:", error));
+
