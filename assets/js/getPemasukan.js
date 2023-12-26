@@ -34,19 +34,48 @@ const dataPemasukan  = (value) => {
 }
 
 
+// const responseData = (result) => {
+//     if (result.status === true) {
+//                 // Iterate through the data and add rows to the table
+//                 result.data.forEach(dataPemasukan);
+                
+//                 // Calculate the total sum of jumlah_masuk
+//                 const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
+        
+//                 // Update the HTML element with the calculated sum
+//                 document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
+        
+        
+//                 console.log(result);
+//     }
+// }
+
 const responseData = (result) => {
     if (result.status === true) {
-                // Iterate through the data and add rows to the table
-                result.data.forEach(dataPemasukan);
-                
-                // Calculate the total sum of jumlah_masuk
-                const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
-        
-                // Update the HTML element with the calculated sum
-                document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
-        
-        
-                console.log(result);
+        // Calculate the total sum of jumlah_masuk
+        const totalPemasukan = result.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
+
+        // Update the HTML element with the calculated sum
+        document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
+
+        // Clear existing content in the table
+        document.getElementById('tablePemasukan').innerHTML = '';
+
+        // Iterate through the data and add rows to the table
+        result.data.forEach(data => {
+            const rowData = formPemasukan
+                .replace("#TANGGAL_MASUK#", data.tanggal_masuk)
+                .replace("#JUMLAH_MASUK#", data.jumlah_masuk)
+                .replace("#SUMBER#", data.sumber)
+                .replace("#DESKRIPSI#", data.deskripsi)
+                .replace("#IDEDIT#", data._id)
+                .replace("#IDHAPUS#", data._id)
+                .replace("#DELETE#", data._id);
+
+            addInner("tablePemasukan", rowData);
+        });
+
+        console.log(result);
     }
 }
 
