@@ -54,7 +54,7 @@ const rCard = (result) => {
         document.getElementById('incomeCounter').innerText = `Rp. ${totalPemasukan}`;
 
         // // Iterate through the data and add rows to the table
-        // result.data.forEach(dataPemasukan);
+        result.data.forEach(dataPemasukan);
 
         console.log(result);
     }
