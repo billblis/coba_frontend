@@ -99,23 +99,34 @@ const rCardPengeluaran = (result) => {
     }
 }
 
-const updateRemainingAmount = (result) => {
-    if (result.status === true) {
+const updateRemainingAmount = (resultIncome, resultExpense) => {
+    if (resultIncome.status === true && resultExpense.status === true) {
+        const totalIncome = resultIncome.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
+        const totalExpenses = resultExpense.data.reduce((sum, item) => sum + item.jumlah_keluar, 0);
 
-    const income = parseFloat(document.getElementById('incomeCounter').innerText.replace('Rp. ', '').replace(',', ''));
-    const expenses = parseFloat(document.getElementById('expensesCounter').innerText.replace('Rp. ', '').replace(',', ''));
+        // Update the HTML elements with the calculated sums
+        document.getElementById('incomeCounter').innerText = `Rp. ${totalIncome}`;
+        document.getElementById('expensesCounter').innerText = `Rp. ${totalExpenses}`;
 
-    const remainingAmount = income - expenses;
+        const remainingAmount = totalIncome - totalExpenses;
 
-    // Update the HTML element with the remaining amount
-    document.getElementById('remainingAmount').innerText = `Rp. ${remainingAmount}`;
+        // Update the HTML element with the remaining amount
+        document.getElementById('remainingAmount').innerText = `Rp. ${remainingAmount}`;
 
-    result.data.forEach(dataPengeluaran);
-    result.data.forEach(dataPemasukan);
+        resultIncome.data.forEach(dataPemasukan);
+        resultExpense.data.forEach(dataPengeluaran);
 
-    console.log(result);
+        console.log(resultIncome);
+        console.log(resultExpense);
     }
 }
+
+// Fetch income and expense data, then update remaining amount
+Promise.all([fetchIncomeData(), fetchExpenseData()])
+    .then(([resultIncome, resultExpense]) => {
+        updateRemainingAmount(resultIncome, resultExpense);
+    })
+    .catch(error => console.error('Error fetching data:', error));
 
 getWithToken(target_url_pemasukan, responseDataPemasukan);
 getWithToken(target_url_pemasukan, rCardPemasukan);
