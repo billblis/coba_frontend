@@ -156,4 +156,5 @@ getWithToken(target_url_pemasukan, responseDataPemasukan);
 getWithToken(target_url_pemasukan, rCardPemasukan);
 getWithToken(target_url_pengeluaran, responseDataPengeluaran);
 getWithToken(target_url_pengeluaran, rCardPengeluaran);
-getWithToken(target_url_pengeluaran, target_url_pemasukan, updateRemainingAmount);
+getWithToken(target_url_pengeluaran, updateRemainingAmount);
+getWithToken(target_url_pemasukan, updateRemainingAmount);
