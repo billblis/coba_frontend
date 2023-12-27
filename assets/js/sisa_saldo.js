@@ -99,65 +99,26 @@ const rCardPengeluaran = (result) => {
     }
 }
 
-// function updateRemainingAmount() {
-//     const income = parseFloat(document.getElementById('incomeCounter').innerText.replace('Rp. ', '').replace(',', ''));
-//     const expenses = parseFloat(document.getElementById('expensesCounter').innerText.replace('Rp. ', '').replace(',', ''));
+const updateRemainingAmount = (result) => {
+    if (result.status === true) {
 
-//     const remainingAmount = income - expenses;
-
-//     // Update the HTML element with the remaining amount
-//     document.getElementById('remainingAmount').innerText = `Rp. ${remainingAmount}`;
-// }
-
-// ... (Your existing code)
-
-// Function to fetch income data and update UI
-function fetchIncomeData() {
-    return new Promise((resolve, reject) => {
-        getWithToken(target_url_pemasukan, (result) => {
-            responseDataPemasukan(result);
-            rCardPemasukan(result);
-            resolve(result);
-        });
-    });
-}
-
-// Function to fetch expense data and update UI
-function fetchExpenseData() {
-    return new Promise((resolve, reject) => {
-        getWithToken(target_url_pengeluaran, (result) => {
-            responseDataPengeluaran(result);
-            rCardPengeluaran(result);
-            resolve(result);
-        });
-    });
-}
-
-// Function to update remaining amount
-function updateRemainingAmount() {
-    const income = parseFloat(document.getElementById('incomeCounter').innerText.replace('Rp. ', '').replace(',', '')) || 0;
-    const expenses = parseFloat(document.getElementById('expensesCounter').innerText.replace('Rp. ', '').replace(',', '')) || 0;
+    const income = parseFloat(document.getElementById('incomeCounter').innerText.replace('Rp. ', '').replace(',', ''));
+    const expenses = parseFloat(document.getElementById('expensesCounter').innerText.replace('Rp. ', '').replace(',', ''));
 
     const remainingAmount = income - expenses;
 
     // Update the HTML element with the remaining amount
     document.getElementById('remainingAmount').innerText = `Rp. ${remainingAmount}`;
+
+    result.data.forEach(dataPengeluaran);
+    result.data.forEach(dataPemasukan);
+
+    console.log(result);
+    }
 }
-
-// Fetch income and expense data, then update remaining amount
-Promise.all([fetchIncomeData(), fetchExpenseData()])
-    .then(([incomeResult, expenseResult]) => {
-        if (incomeResult.status === true && expenseResult.status === true) {
-            updateRemainingAmount();
-        }
-    })
-    .catch(error => console.error('Error fetching data:', error));
-
-// ... (Your existing code)
-
 
 getWithToken(target_url_pemasukan, responseDataPemasukan);
 getWithToken(target_url_pemasukan, rCardPemasukan);
 getWithToken(target_url_pengeluaran, responseDataPengeluaran);
 getWithToken(target_url_pengeluaran, rCardPengeluaran);
-updateRemainingAmount();
+getWithToken(target_url_pengeluaran, target_url_pemasukan, updateRemainingAmount);
