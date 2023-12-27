@@ -159,7 +159,14 @@ getWithToken(target_url_pemasukan, responseDataPemasukan);
 getWithToken(target_url_pemasukan, rCardPemasukan);
 getWithToken(target_url_pengeluaran, responseDataPengeluaran);
 getWithToken(target_url_pengeluaran, rCardPengeluaran);
-getWithToken(target_url_pemasukan, (result) => updateRemainingAmount(result, {}));
-getWithToken(target_url_pengeluaran, (result) => updateRemainingAmount({}, result));
+getWithToken(target_url_pemasukan, (result) => {
+    console.log('Income Data:', result);
+    updateRemainingAmount(result, {});
+});
+
+getWithToken(target_url_pengeluaran, (result) => {
+    console.log('Expense Data:', result);
+    updateRemainingAmount({}, result);
+});
 // getWithToken(target_url_pengeluaran, updateRemainingAmount);
 // getWithToken(target_url_pemasukan, updateRemainingAmount);
