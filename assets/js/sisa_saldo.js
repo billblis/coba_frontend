@@ -142,8 +142,11 @@ const updateRemainingAmount = (resultIncome, resultExpense) => {
 
         console.log(resultIncome);
         console.log(resultExpense);
+    } else {
+        console.error('Error: Unable to retrieve income or expense data.');
     }
 }
+
 
 // Fetch income and expense data, then update remaining amount
 Promise.all([fetchIncomeData(), fetchExpenseData()])
@@ -156,5 +159,7 @@ getWithToken(target_url_pemasukan, responseDataPemasukan);
 getWithToken(target_url_pemasukan, rCardPemasukan);
 getWithToken(target_url_pengeluaran, responseDataPengeluaran);
 getWithToken(target_url_pengeluaran, rCardPengeluaran);
-getWithToken(target_url_pengeluaran, updateRemainingAmount);
-getWithToken(target_url_pemasukan, updateRemainingAmount);
+getWithToken(target_url_pemasukan, (result) => updateRemainingAmount(result, {}));
+getWithToken(target_url_pengeluaran, (result) => updateRemainingAmount({}, result));
+// getWithToken(target_url_pengeluaran, updateRemainingAmount);
+// getWithToken(target_url_pemasukan, updateRemainingAmount);
