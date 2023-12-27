@@ -155,10 +155,10 @@ Promise.all([fetchIncomeData(), fetchExpenseData()])
     })
     .catch(error => console.error('Error fetching data:', error));
 
-getWithToken(target_url_pemasukan, responseDataPemasukan);
-getWithToken(target_url_pemasukan, rCardPemasukan);
-getWithToken(target_url_pengeluaran, responseDataPengeluaran);
-getWithToken(target_url_pengeluaran, rCardPengeluaran);
+// getWithToken(target_url_pemasukan, responseDataPemasukan);
+// getWithToken(target_url_pemasukan, rCardPemasukan);
+// getWithToken(target_url_pengeluaran, responseDataPengeluaran);
+// getWithToken(target_url_pengeluaran, rCardPengeluaran);
 getWithToken(target_url_pemasukan, (result) => {
     console.log('Income Data:', result);
     updateRemainingAmount(result, {});
