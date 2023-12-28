@@ -99,30 +99,6 @@ const rCardPengeluaran = (result) => {
     }
 }
 
-
-// Function to fetch income data and update UI
-function fetchIncomeData() {
-    return new Promise((resolve, reject) => {
-        getWithToken(target_url_pemasukan, (result) => {
-            responseDataPemasukan(result);
-            rCardPemasukan(result);
-            resolve(result);
-        });
-    });
-}
-
-// Function to fetch expense data and update UI
-function fetchExpenseData() {
-    return new Promise((resolve, reject) => {
-        getWithToken(target_url_pengeluaran, (result) => {
-            responseDataPengeluaran(result);
-            rCardPengeluaran(result);
-            resolve(result);
-        });
-    });
-}
-
-
 const updateRemainingAmount = (resultIncome, resultExpense) => {
     if (resultIncome.status === true && resultExpense.status === true) {
         const totalIncome = resultIncome.data.reduce((sum, item) => sum + item.jumlah_masuk, 0);
@@ -142,31 +118,19 @@ const updateRemainingAmount = (resultIncome, resultExpense) => {
 
         console.log(resultIncome);
         console.log(resultExpense);
-    } else {
-        console.error('Error: Unable to retrieve income or expense data.');
     }
 }
 
-
 // Fetch income and expense data, then update remaining amount
-Promise.all([fetchIncomeData(), fetchExpenseData()])
-    .then(([resultIncome, resultExpense]) => {
-        updateRemainingAmount(resultIncome, resultExpense);
-    })
-    .catch(error => console.error('Error fetching data:', error));
+// Promise.all([fetchIncomeData(), fetchExpenseData()])
+//     .then(([resultIncome, resultExpense]) => {
+//         updateRemainingAmount(resultIncome, resultExpense);
+//     })
+//     .catch(error => console.error('Error fetching data:', error));
 
-// getWithToken(target_url_pemasukan, responseDataPemasukan);
-// getWithToken(target_url_pemasukan, rCardPemasukan);
-// getWithToken(target_url_pengeluaran, responseDataPengeluaran);
-// getWithToken(target_url_pengeluaran, rCardPengeluaran);
-getWithToken(target_url_pemasukan, (result) => {
-    console.log('Income Data:', result);
-    updateRemainingAmount(result, {});
-});
-
-getWithToken(target_url_pengeluaran, (result) => {
-    console.log('Expense Data:', result);
-    updateRemainingAmount({}, result);
-});
-// getWithToken(target_url_pengeluaran, updateRemainingAmount);
-// getWithToken(target_url_pemasukan, updateRemainingAmount);
+getWithToken(target_url_pemasukan, responseDataPemasukan);
+getWithToken(target_url_pemasukan, rCardPemasukan);
+getWithToken(target_url_pengeluaran, responseDataPengeluaran);
+getWithToken(target_url_pengeluaran, rCardPengeluaran);
+getWithToken(target_url_pengeluaran, updateRemainingAmount);
+getWithToken(target_url_pemasukan, updateRemainingAmount);
