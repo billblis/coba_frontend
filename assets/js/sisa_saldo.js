@@ -121,6 +121,16 @@ const updateRemainingAmount = (resultIncome, resultExpense) => {
     }
 }
 
+Promise.all([
+    getWithToken(target_url_pemasukan, responseDataPemasukan),
+    getWithToken(target_url_pengeluaran, responseDataPengeluaran)
+])
+    .then(([resultIncome, resultExpense]) => {
+        updateRemainingAmount(resultIncome, resultExpense);
+    })
+    .catch(error => console.error('Error fetching data:', error));
+    
+
 // Fetch income and expense data, then update remaining amount
 // Promise.all([fetchIncomeData(), fetchExpenseData()])
 //     .then(([resultIncome, resultExpense]) => {
