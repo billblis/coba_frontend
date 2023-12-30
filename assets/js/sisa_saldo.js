@@ -126,7 +126,13 @@ Promise.all([
     getWithToken(target_url_pengeluaran, responseDataPengeluaran)
 ])
     .then(([resultIncome, resultExpense]) => {
-        updateRemainingAmount(resultIncome, resultExpense);
+        if (resultIncome && resultExpense) {
+            processDataAndUI(resultIncome, dataPemasukan, 'incomeCounter', 'tablePemasukan');
+            processDataAndUI(resultExpense, dataPengeluaran, 'expensesCounter', 'tablePengeluaran');
+            updateRemainingAmount(resultIncome, resultExpense);
+        } else {
+            console.error('Error: One or more results are undefined.');
+        }
     })
     .catch(error => console.error('Error fetching data:', error));
     
