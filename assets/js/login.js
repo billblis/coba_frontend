@@ -1,57 +1,50 @@
-import { getValue } from "https://jscroot.github.io/element/croot.js";
-import { setCookieWithExpireHour } from "https://jscroot.github.io/cookie/croot.js";
+document.addEventListener("DOMContentLoaded", function () {
+    const awesomeLoaderWrapper = document.createElement("div");
+    awesomeLoaderWrapper.classList.add("awesome-loader-wrapper");
 
-function postWithToken(target_url, data, responseFunction) {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    const awesomeLoaderContent = document.createElement("div");
+    awesomeLoaderContent.classList.add("awesome-loader");
 
-    const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: JSON.stringify(data),
-        redirect: 'follow'
-    };
-
-    fetch(target_url, requestOptions)
-        .then(response => response.text())
-        .then(result => responseFunction(JSON.parse(result)))
-        .catch(error => console.log('error', error));
-}
-
-const Login = () => {
-
-    const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/login";
-    
-    const data = {
-        "username": getValue("username"),
-        "password": getValue("password"),
-    };
-
-    postWithToken(target_url, data, responseData);
-
-}
-
-function responseData(result) {
-    if (result.token) {
-        setCookieWithExpireHour("Authorization", result.token, 2);
-
-        // Use SweetAlert for success message
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil Masuk',
-            text: "Selamat Datang di Billblis",
-        }).then(() => {
-            // Redirect to the dashboard page
-            window.location.href = " ../dashboard.html";
-        });
-    } else {
-        // Use SweetAlert for error message
-        Swal.fire({
-            icon: 'error',
-            title: 'Gagal Masuk',
-            text: result.message,
-        });
+    for (let i = 0; i < 12; i++) {
+        const circle = document.createElement("div");
+        awesomeLoaderContent.appendChild(circle);
     }
-}
 
-document.getElementById("button").addEventListener("click", Login);
+    awesomeLoaderWrapper.appendChild(awesomeLoaderContent);
+    document.body.appendChild(awesomeLoaderWrapper);
+
+    const loadingModal = document.getElementById("loadingModal");
+
+    function showAwesomeLoading() {
+        document.body.style.overflow = "hidden"; // Prevent scrolling while loading
+        awesomeLoaderWrapper.style.display = "flex";
+    }
+
+    function hideAwesomeLoading() {
+        document.body.style.overflow = ""; // Enable scrolling after loading
+        awesomeLoaderWrapper.style.display = "none";
+    }
+
+    function showLoadingModal() {
+        loadingModal.style.display = "flex";
+    }
+
+    function hideLoadingModal() {
+        loadingModal.style.display = "none";
+    }
+
+    const loginButton = document.getElementById("button");
+
+    loginButton.addEventListener("click", function () {
+        showAwesomeLoading();
+        showLoadingModal();
+
+        // Simulate a login request (replace this with your actual login logic)
+        setTimeout(() => {
+            hideAwesomeLoading();
+            hideLoadingModal();
+            // Optionally, you can redirect to another page after successful login
+            window.location.href = "dashboard.html";
+        }, 3000);
+    });
+});
