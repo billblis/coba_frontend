@@ -1,7 +1,5 @@
 // awesome-loading.js
 
-// import { showLoadingModal, hideLoadingModal } from './loading-modal';
-
 document.addEventListener("DOMContentLoaded", function () {
     const awesomeLoaderWrapper = document.createElement("div");
     awesomeLoaderWrapper.classList.add("awesome-loader-wrapper");
@@ -28,9 +26,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     showAwesomeLoading();
-    setTimeout(() => {
-        hideAwesomeLoading();
-        hideLoadingModal(); // Optionally hide the loading modal here
-    }, 3000);
+    setTimeout(hideAwesomeLoading, 3000);
 });
-
