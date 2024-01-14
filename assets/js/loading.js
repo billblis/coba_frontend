@@ -1,3 +1,5 @@
+// awesome-loading.js
+
 document.addEventListener("DOMContentLoaded", function () {
     const awesomeLoaderWrapper = document.createElement("div");
     awesomeLoaderWrapper.classList.add("awesome-loader-wrapper");
@@ -23,13 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         awesomeLoaderWrapper.style.display = "none";
     }
 
-    const loginButton = document.getElementById("button");
-
-    loginButton.addEventListener("click", function () {
-        showAwesomeLoading();
-        setTimeout(() => {
-            hideAwesomeLoading();
-            window.location.href = "dashboard.html"; // Redirect to dashboard after successful login
-        }, 3000);
-    });
+    showAwesomeLoading();
+    setTimeout(hideAwesomeLoading, 3000);
 });
