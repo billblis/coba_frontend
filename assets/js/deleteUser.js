@@ -21,7 +21,7 @@ const deleteUser = async (USERHAPUS) => {
     myHeaders.append("Authorization", token);
 
     const target_url =
-      "https://asia-southeast2-mytodolist-402507.cloudfunctions.net/mytodolist-user?username=" + username;
+      "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/BillblisUser?username=" + username;
 
     try {
       const response = await fetch(target_url, {

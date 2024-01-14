@@ -125,3 +125,13 @@ export const formPengeluaran = `
                     </tr>
                   </tbody>
 `;
+
+export const modalHapus = `
+<button class="button is-black jb-modal-close" onclick="deleteUser('#HAPUS#')">Delete</button>
+`;
+
+export const navbarUser = `
+  <div class="is-user-name">
+    <span class="menu-item-label" id="username">#USERNAME#</span>
+  </div>
+`;
