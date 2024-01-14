@@ -23,18 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
         awesomeLoaderWrapper.style.display = "none";
     }
 
-    function simulateLogin() {
-        // Simulate a login request (replace this with your actual login logic)
-        setTimeout(() => {
-            hideAwesomeLoading();
-            window.location.href = "dashboard.html"; // Redirect to dashboard after successful login
-        }, 3000);
-    }
-
     const loginButton = document.getElementById("button");
 
     loginButton.addEventListener("click", function () {
         showAwesomeLoading();
-        simulateLogin();
+        setTimeout(() => {
+            hideAwesomeLoading();
+            window.location.href = "dashboard.html"; // Redirect to dashboard after successful login
+        }, 3000);
     });
 });
