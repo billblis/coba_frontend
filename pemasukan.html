@@ -24,10 +24,14 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
       defer
     ></script>
-    <script  src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/charts-bars.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/charts-lines.js" type="module"></script>
+    <!-- <script  src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/charts-bars.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/charts-lines.js" type="module"></script> -->
     <!-- js -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+  <script type="module" src="assets/js/charts-pie.js"></script>
+  <script type="module" src="assets/js/charts-bars.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
   <link rel="stylesheet" href="assets/css/loading.css">
   <script type="module" src="assets/js/loading.js"></script>
   <body>
@@ -737,7 +741,7 @@
                 class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 mt-8"
               >
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                  Bars
+                  Bars Chart
                 </h4>
                 <canvas id="bars"></canvas>
                 <div
@@ -759,14 +763,14 @@
                 </div>
               </div>
 
-              <!-- Lines chart -->
+              <!-- Doughnut/Pie Chart chart -->
             <div
             class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800 mt-8"
           >
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-              Lines
+              Doughnut/Pie Chart
             </h4>
-            <canvas id="line"></canvas>
+            <canvas id="pie"></canvas>
             <div
               class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
             >
