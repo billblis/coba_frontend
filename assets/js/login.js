@@ -21,7 +21,7 @@ function postWithToken(target_url, data, responseFunction) {
 const Login = () => {
 
     const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/login";
-    
+
     const data = {
         "username": getValue("username"),
         "password": getValue("password"),

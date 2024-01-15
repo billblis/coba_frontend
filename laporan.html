@@ -265,7 +265,7 @@
           </ul>
           <div class="px-6 my-6">
             <a class="block w-full">
-                <button type="button" id="btnLogout"
+                <button type="button" id="btnLogout2"
                   class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                 >
                   Logout
@@ -302,7 +302,7 @@
             </button>
             <!-- Search input -->
             <div class="flex justify-center flex-1 lg:mr-32">
-              <div
+              <!-- <div
                 class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
               >
                 <div class="absolute inset-y-0 flex items-center pl-2">
@@ -325,7 +325,7 @@
                   placeholder="Search for projects"
                   aria-label="Search"
                 />
-              </div>
+              </div> -->
             </div>
             <ul class="flex items-center flex-shrink-0 space-x-6">
               <!-- Theme toggler -->
@@ -463,13 +463,22 @@
           </div>
         </header>
         <main class="h-full overflow-y-auto">
-          <div class="container px-6 mx-auto grid">
+          <di class="container px-6 mx-auto grid">
             <!-- New Table -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h4
              class=" my-6 text-lg font-semibold text-gray-600 dark:text-gray-300"
            >
              Laporan Keuangan
            </h4>
+           <div class="flex flex-col flex-wrap mb-4 space-y-4 md:flex-row md:items-end md:space-x-4">
+           <a href="">
+           <button class="px-3 py-2 font-medium text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple w-auto">
+            ↓ Download Semua Laporan
+           </button>
+          </a>
+          </div>
+
             <div class="w-full overflow-hidden rounded-lg shadow-xs mb-8">
              <div class="w-full overflow-x-auto">
                <table class="w-full whitespace-no-wrap">
@@ -498,9 +507,10 @@
                          </div>
                        </div>
                      </td>
-                     <td class="px-4 py-3 text-sm">
-                       2
+                     <td id="pemasukanCount" class="px-4 py-3 text-sm">
+                      0
                      </td>
+                     
                      <td class="px-4 py-3 text-xs">
                         <span
                         id="incomeCounter"
@@ -532,8 +542,8 @@
                          </div>
                        </div>
                      </td>
-                     <td class="px-4 py-3 text-sm">
-                       2
+                     <td id="pengeluaranCount" class="px-4 py-3 text-sm">
+                       0
                      </td>
                      <td class="px-4 py-3 text-xs">
                        <span
@@ -556,15 +566,15 @@
                  </tbody>
                </table>
              </div>
-             <div
+             <!-- <div
                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
              >
                <span class="flex items-center col-span-3">
                  Showing 21-30 of 100
                </span>
-               <span class="col-span-2"></span>
+               <span class="col-span-2"></span> -->
                <!-- Pagination -->
-               <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+               <!-- <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
                  <nav aria-label="Table navigation">
                    <ul class="inline-flex items-center">
                      <li>
@@ -651,7 +661,7 @@
                    </ul>
                  </nav>
                </span>
-             </div>
+             </div> -->
 
 
              <!-- Charts -->
@@ -713,8 +723,11 @@
            </div>
         </main>
         <script type="module" src="assets/js/auth.js"></script>
-        <script type="module" src="assets/js/sisa_saldo.js"></script>
+        <script type="module" src="assets/js/sisa_uang.js"></script>
+        <script type="module" src="assets/js/getPemasukanCount.js"></script>
+        <script type="module" src="assets/js/getPengeluaranCount.js"></script>
         <script type="module" src="assets/js/logout.js"></script>
+        <script type="module" src="assets/js/logout-mobile.js"></script>
        
   </body>
 

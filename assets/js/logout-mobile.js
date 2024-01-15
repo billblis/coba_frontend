@@ -18,6 +18,6 @@ const logout = () => {
     });
   };
   
-const btnLogout = document.getElementById("btnLogout");
+const btnLogout2 = document.getElementById("btnLogout2");
 
-btnLogout.addEventListener("click", logout);
+btnLogout2.addEventListener("click", logout);

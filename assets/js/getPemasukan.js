@@ -1,9 +1,8 @@
-import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
-import { addInner } from "https://jscroot.github.io/element/croot.js";
-import { formPemasukan } from "./table.js";
+import { getCookie } from 'https://jscroot.github.io/cookie/croot.js';
+import { addInner } from 'https://jscroot.github.io/element/croot.js';
+import { formPemasukan } from './table.js';
 
-
-function getWithToken(target_url, responseFunction) {
+export function getWithToken(target_url, responseFunction) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", getCookie("Authorization"));
 
@@ -19,17 +18,17 @@ function getWithToken(target_url, responseFunction) {
         .catch(error => console.log('error', error));
 }
 
-const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
+export const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan";
 
-const dataPemasukan  = (value) => {
+const dataPemasukan = (value) => {
     const data = formPemasukan
-    .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
-    .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
-    .replace("#SUMBER#", value.sumber)
-    .replace("#DESKRIPSI#", value.deskripsi)
-    .replace("#IDEDIT#", value._id)
-    .replace("#IDHAPUS#", value._id)
-    .replace("#DELETE#", value._id);
+        .replace("#TANGGAL_MASUK#", value.tanggal_masuk)
+        .replace("#JUMLAH_MASUK#", value.jumlah_masuk)
+        .replace("#SUMBER#", value.sumber)
+        .replace("#DESKRIPSI#", value.deskripsi)
+        .replace("#IDEDIT#", value._id)
+        .replace("#IDHAPUS#", value._id)
+        .replace("#DELETE#", value._id);
 
     addInner("tablePemasukan", data);
 }
@@ -38,7 +37,6 @@ const dataPemasukan  = (value) => {
 const responseData = (result) => {
     if (result.status === true) {
 
-        // Iterate through the data and add rows to the table
         result.data.forEach(dataPemasukan);
 
         console.log(result);
