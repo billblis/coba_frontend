@@ -6,6 +6,12 @@ import { setBarChart } from './charts-bars.js'
 import { target_url as url_pemasukan } from './getPemasukan.js'
 import { target_url as url_pengeluaran } from './getPengeluaran.js'
 
+// Function to format number as IDR
+function formatRupiah(amount) {
+    const formattedAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return `Rp. ${formattedAmount}`;
+}
+
 export async function fetchData(url) {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", getCookie("Authorization"));
@@ -33,13 +39,15 @@ async function remainingAmount() {
 
         const pemasukan = pemasukanData.reduce((sum, item) => sum + (item.jumlah_masuk || 0), 0);
         const pengeluaran = pengeluaranData.reduce((sum, item) => sum + (item.jumlah_keluar || 0), 0);
-        const remainingAmount = pemasukan - pengeluaran;
+        const remainingAmountValue = pemasukan - pengeluaran;
+        
+        const formattedRemainingAmount = formatRupiah(remainingAmountValue);
 
-        setPieChart(pemasukan, pengeluaran)
-        setBarChart(pemasukanData, pengeluaranData)
-        $('#remainingAmount').html(`Rp. ${remainingAmount}`);
+        setPieChart(pemasukan, pengeluaran);
+        setBarChart(pemasukanData, pengeluaranData);
+        $('#remainingAmount').html(formattedRemainingAmount);
 
-        return remainingAmount
+        return remainingAmountValue;
     } catch (error) {
         console.error('Error updating remaining amount:', error);
     }

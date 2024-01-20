@@ -25,7 +25,7 @@ const insertPengeluaran = async () => {
         if (jumlahKeluar > remainingAmount) {
             Swal.fire({
                 icon: "error",
-                title: "Insufficient Balance",
+                title: "Saldo Tidak Cukup",
                 text: "You don't have enough balance for this expense.",
             });
             return;
