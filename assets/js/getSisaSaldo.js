@@ -8,8 +8,8 @@ import { target_url as url_pengeluaran } from './getPengeluaran.js'
 
 // Function to format number as IDR
 function formatRupiah(amount) {
-    const formattedAmount = amount.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
-    return formattedAmount;
+    const formattedAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return `Rp. ${formattedAmount}`;
 }
 
 export async function fetchData(url) {
