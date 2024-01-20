@@ -3,7 +3,7 @@
 import { postWithToken } from "https://jscroot.github.io/api/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js";
-import { fetchData } from './getSaldo.js'; // Import the fetchData function from getSaldo.js
+import { fetchData } from './getSisaSaldo.js'; // Import the fetchData function from getSaldo.js
 
 const insertPengeluaran = async () => {
     const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/insertPengeluaran";
