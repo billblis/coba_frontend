@@ -47,11 +47,18 @@ function handleDownloadExcel(
         XLSX.utils.sheet_add_aoa(ws, [['Data Pengeluaran']], { origin: `A${row + 2}` })
         row += 4
 
-        XLSX.utils.sheet_add_aoa(ws, [['ID Pengeluaran']], { origin: `B${row}` })
-        XLSX.utils.sheet_add_aoa(ws, [['Tgl Pengeluaran']], { origin: `C${row}` })
-        XLSX.utils.sheet_add_aoa(ws, [['Jumlah']], { origin: `D${row}` })
-        XLSX.utils.sheet_add_aoa(ws, [['ID Sumber']], { origin: `E${row}` })
+        // XLSX.utils.sheet_add_aoa(ws, [['ID Pengeluaran']], { origin: `B${row}` })
+        // XLSX.utils.sheet_add_aoa(ws, [['Tgl Pengeluaran']], { origin: `C${row}` })
+        // XLSX.utils.sheet_add_aoa(ws, [['Jumlah']], { origin: `D${row}` })
+        // XLSX.utils.sheet_add_aoa(ws, [['ID Sumber']], { origin: `E${row}` })
+        // row += 1
+
+        XLSX.utils.sheet_add_aoa(ws, [['ID Pengeluaran']], { origin: `A${row}` })
+        XLSX.utils.sheet_add_aoa(ws, [['Tgl Pengeluaran']], { origin: `B${row}` })
+        XLSX.utils.sheet_add_aoa(ws, [['Jumlah']], { origin: `C${row}` })
+        XLSX.utils.sheet_add_aoa(ws, [['ID Sumber']], { origin: `D${row}` })
         row += 1
+
 
         pengeluaran.map(el => {
             XLSX.utils.sheet_add_aoa(ws, [[el._id]], { origin: `A${row}` })
