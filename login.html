@@ -9,7 +9,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+dZp5IxtfI4xuUzIzRWME2/gG8fP0tM2bKJ3OMypGGZ/DQlFz4ktE5zvS1b6MqfWDEn9Gmev8MZRuEzH2Jom/Q==" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="assets/css/tailwind.output.css" />
     <link rel="stylesheet" href="assets/css/loading.css" />
@@ -67,37 +66,8 @@
               </label>
 
               <!-- You should use a button here, as the anchor is only used for the example  -->
-              <!-- Tombol dengan icon loading -->
-<button type="button" class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" id="button">
-  <span id="button-text">Sign in</span>
-  <span id="button-loader" class="hidden ml-2">
-    <i class="fas fa-spinner fa-spin"></i>
-  </span>
-</button>
+              <button type="button" class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" id="button">Sign in</button>
 
-<script>
-  document.getElementById('button').addEventListener('click', function() {
-    // Ambil elemen teks dan loader
-    var buttonText = document.getElementById('button-text');
-    var buttonLoader = document.getElementById('button-loader');
-
-    // Sembunyikan teks dan tampilkan loader
-    buttonText.style.display = 'none';
-    buttonLoader.style.display = 'inline-block';
-
-    // Simulasikan proses login (Anda dapat menggantinya dengan panggilan AJAX atau yang sesuai)
-    setTimeout(function() {
-      // Setelah login berhasil, kembalikan tampilan normal tombol
-      buttonText.style.display = 'inline-block';
-      buttonLoader.style.display = 'none';
-
-      // Ganti teks tombol jika diperlukan
-      buttonText.innerText = 'Logged in';
-
-      // Tambahkan logika untuk navigasi atau tindakan setelah login
-    }, 2000); // Gantilah angka 2000 dengan durasi login yang sesuai
-  });
-</script>
               <!-- <p class="mt-4">
                 <a
                   class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
