@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BILLBLIS</title>
+
+    <!--LINK-->
     <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -14,13 +16,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/tailwind.output.css" />
+    <link rel="stylesheet" href="assets/css/loading.css">
+
+    <!--SCRIPT-->
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
     <script src="https://cdn.jsdelivr.net/gh/billblis/billblis_js@main/init-alpine.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="assets/css/loading.css">
     <script type="module" src="assets/js/loading.js"></script>
   </head>
   <body>
@@ -547,27 +551,12 @@
         </main>
       </div>
     </div>
+
+    <!--SCRIPT-->
     <script type="module" src="assets/js/insertPengeluaran.js"></script>
     <script type="module" src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/logout.js"></script>
     <script type="module" src="assets/js/logout-mobile.js"></script>
-
-    <!-- <script>
-        function formatRupiah(input) {
-          // Hapus semua karakter selain angka
-          let value = input.value.replace(/\D/g, "");
-        
-          // Format rupiah dengan tanda titik sebagai pemisah ribuan dan jutaan
-          value = new Intl.NumberFormat("id-ID", {
-            style: "currency",
-            currency: "IDR",
-            minimumFractionDigits: 0,
-          }).format(value);
-        
-          // Setel nilai input dengan format rupiah
-          input.value = value;
-        }
-        </script> -->
 
   </body>
 </html>
