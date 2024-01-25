@@ -20,6 +20,7 @@ const Register = () => {
     const data = {
         "email" : getValue("email"),
         "username": getValue("username"),
+        "phonenumber": getValue("phonenumber"),
         "password": getValue("password"),
     };
     
