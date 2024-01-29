@@ -537,8 +537,13 @@
               <!-- Tombol Tambahan dan Batal -->
               <div class="flex justify-end mt-4">
                 <button id="btnInsert" type="button"
-                  class="mr-4 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple"
-                  id="btnInsert">Tambah
+                   class="mr-4 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple"
+                   onclick="insertData()">Tambah
+                 <span id="insert-loader" class="hidden ml-2">
+                 <div class="spinner-border text-white" role="status">
+                   <span class="visually-hidden">Loading...</span>
+                 </div>
+                </span>
                 </button>
                 <a href="pengeluaran.html">
                 <button type="button"
@@ -557,6 +562,7 @@
     <script type="module" src="assets/js/auth.js"></script>
     <script type="module" src="assets/js/logout.js"></script>
     <script type="module" src="assets/js/logout-mobile.js"></script>
+    <script type="module" src="assets/js/buttonloading.js"></script>
 
   </body>
 </html>
