@@ -492,16 +492,17 @@
                 />
               </label>   
 
-            
-              
-           
-
               <!-- Tombol Tambahan dan Batal -->
               <div class="flex justify-end mt-4">
-                <button id="change"  type="button"
-                  class="mr-4 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple"
-                  >Change
-                </button>
+                <button id="change" type="button"
+                   class="mr-4 px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-purple">
+                 <span id="change-password-text">Change Password</span>
+                  <span id="change-password-loader" class="hidden ml-2">
+                  <div class="spinner-border text-danger" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                 </div>
+            </span>
+               </button>
                 <a href="dashboard.html">
                 <button type="button"
                   class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-lg active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">Batal
