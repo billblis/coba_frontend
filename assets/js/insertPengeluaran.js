@@ -26,7 +26,7 @@ const insertPengeluaran = async () => {
             Swal.fire({
                 icon: "error",
                 title: "Saldo Tidak Cukup",
-                text: "You don't have enough balance for this expense.",
+                text: "Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.",
             });
             return;
         }
