@@ -39,4 +39,40 @@
         callback(success);
       }, 2000); // Replace 2000 with the desired login duration
     }
-  });
+  
+
+   // Add the code for the "Tambah" button here
+   const insertButton = document.getElementById('btnInsert');
+   const insertLoader = document.getElementById('insert-loader');
+
+   insertButton.addEventListener('click', function () {
+     showInsertLoadingState();
+
+     // Simulate the data insertion process
+     simulateInsertion(function () {
+       hideInsertLoadingState();
+       // Add logic for navigation or actions after successful data insertion
+     });
+   });
+
+   function showInsertLoadingState() {
+     insertLoader.style.display = 'inline-block';
+     insertButton.disabled = true;
+   }
+
+   function hideInsertLoadingState() {
+     insertLoader.style.display = 'none';
+     insertButton.disabled = false;
+   }
+
+   function simulateInsertion(callback) {
+     // Simulate data insertion success after a delay
+     setTimeout(function () {
+       // Replace the following line with your actual logic for data insertion
+       console.log('Data inserted successfully');
+
+       // Invoke the callback to signify the completion of the data insertion process
+       callback();
+     }, 2000); // Replace 2000 with the desired duration for data insertion
+   }
+ });
