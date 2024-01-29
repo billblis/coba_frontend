@@ -60,8 +60,8 @@ const updatePengeluaran = () => {
     if (data.jumlah_keluar > incomeAmount) {
         Swal.fire({
             icon: "error",
-            title: "Invalid Expense Amount",
-            text: "Saldo tidak cukup. Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.",
+            title: "Saldo Tidak Cukup",
+            text: "Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.",
         });
         return; // Stop the update process
     }
