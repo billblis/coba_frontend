@@ -1,5 +1,6 @@
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
+import { fetchData } from './getSisaSaldo.js';
 
 const putData = (target_url, data, responseFunction) => {
     const myHeaders = new Headers();
@@ -37,7 +38,7 @@ const responseData = (result) => {
     }
 }
 
-const updatePengeluaran = () => {
+const updatePengeluaran = async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const _id = urlParams.get("_id");
 
@@ -45,31 +46,37 @@ const updatePengeluaran = () => {
 
     const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/updatePengeluaran?_id=" + _id;
 
-    // Get income amount
-    const incomeAmount = parseFloat(getValue("jumlah_pemasukan")) || 0;
+    try {
+        // Fetch data for calculating the remaining balance
+        const pemasukanData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan");
+        const pengeluaranData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran");
 
-    // Get expense data
-    const data = {
-        "tanggal_keluar": getValue("tanggal_keluar"),
-        "jumlah_keluar": parseInt(getValue("jumlah_keluar")),
-        "sumber": getValue("sumber"),
-        "deskripsi": getValue("deskripsi"),
-    };
+        const pemasukan = pemasukanData.reduce((sum, item) => sum + (item.jumlah_masuk || 0), 0);
+        const pengeluaran = pengeluaranData.reduce((sum, item) => sum + (item.jumlah_keluar || 0), 0);
+        const remainingAmount = pemasukan - pengeluaran;
 
-    // Check if expense amount exceeds income amount
-    if (data.jumlah_keluar > incomeAmount) {
-        Swal.fire({
-            icon: "error",
-            title: "Saldo Tidak Cukup",
-            text: "Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.",
-        });
-        return; // Stop the update process
+        const incomeAmount = parseFloat(getValue("jumlah_pemasukan")) || 0;
+        const expenseAmount = parseInt(getValue("jumlah_keluar")) || 0;
+
+        // Check if the expense amount exceeds the remaining balance
+        if (expenseAmount > remainingAmount) {
+            alert("Saldo tidak cukup. Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.");
+            return; // Stop the function if expense exceeds income
+        }
+
+        const data = {
+            "tanggal_keluar": getValue("tanggal_keluar"),
+            "jumlah_keluar": expenseAmount,
+            "sumber": getValue("sumber"),
+            "deskripsi": getValue("deskripsi"),
+        };
+
+        // Continue with the update if the balance is sufficient
+        putData(target_url, data, responseData);
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
-
-    // Proceed with updating data
-    putData(target_url, data, responseData);
-
-    console.log("Data:", data);
 };
 
 const btnUpdates = document.getElementById("btnUpdate");
