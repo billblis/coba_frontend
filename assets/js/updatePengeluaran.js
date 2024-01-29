@@ -56,42 +56,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             // Fetch data for calculating the remaining balance
-            const pemasukanData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan");
-            const pengeluaranData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran");
+        const pemasukanData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan");
+        const pengeluaranData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran");
 
-            if (!pemasukanData || !pengeluaranData) {
-                console.error('Error fetching data: Data is null or undefined.');
-                return;
-            }
+        const pemasukan = pemasukanData.reduce((sum, item) => sum + (item.jumlah_masuk || 0), 0);
+        const pengeluaran = pengeluaranData.reduce((sum, item) => sum + (item.jumlah_keluar || 0), 0);
+        const remainingAmount = pemasukan - pengeluaran;
 
-            const pemasukan = pemasukanData.reduce((sum, item) => sum + (item.jumlah_masuk || 0), 0);
-            const pengeluaran = pengeluaranData.reduce((sum, item) => sum + (item.jumlah_keluar || 0), 0);
-            const remainingAmount = pemasukan - pengeluaran;
+        const jumlahKeluar = parseInt(getValue("jumlah_keluar"));
 
-            const incomeAmountElement = document.getElementById("jumlah_pemasukan");
-            const expenseAmountElement = document.getElementById("jumlah_keluar");
+        // Check if the expense amount exceeds the remaining balance
+        if (jumlahKeluar > remainingAmount) {
+            Swal.fire({
+                icon: "error",
+                title: "Saldo Tidak Cukup",
+                text: "Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.",
+            });
+            return;
+        }
 
-            if (!incomeAmountElement || !expenseAmountElement) {
-                console.error('Error: Income or expense amount element is null or undefined.');
-                return;
-            }
-
-            const incomeAmount = parseFloat(incomeAmountElement.value) || 0;
-            const expenseAmount = parseInt(expenseAmountElement.value) || 0;
-
-            // Check if the expense amount exceeds the remaining balance
-            if (expenseAmount > remainingAmount) {
-                alert("Saldo tidak cukup. Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.");
-                return; // Stop the function if expense exceeds income
-            }
-
-            const data = {
-                "tanggal_keluar": getValue("tanggal_keluar"),
-                "jumlah_keluar": expenseAmount,
-                "sumber": getValue("sumber"),
-                "deskripsi": getValue("deskripsi"),
-            };
-
+        const data = {
+            "tanggal_keluar": getValue("tanggal_keluar"),
+            "jumlah_keluar": jumlahKeluar,
+            "sumber": getValue("sumber"),
+            "deskripsi": getValue("deskripsi"),
+        };
             // Continue with the update if the balance is sufficient
             putData(target_url, data, responseData);
 
