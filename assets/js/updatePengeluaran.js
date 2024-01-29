@@ -45,13 +45,28 @@ const updatePengeluaran = () => {
 
     const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/updatePengeluaran?_id=" + _id;
 
+    // Get income amount
+    const incomeAmount = parseFloat(getValue("jumlah_pemasukan")) || 0;
+
+    // Get expense data
     const data = {
         "tanggal_keluar": getValue("tanggal_keluar"),
         "jumlah_keluar": parseInt(getValue("jumlah_keluar")),
         "sumber": getValue("sumber"),
-        "deskripsi" : getValue("deskripsi"),
+        "deskripsi": getValue("deskripsi"),
     };
-    
+
+    // Check if expense amount exceeds income amount
+    if (data.jumlah_keluar > incomeAmount) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Expense Amount",
+            text: "Saldo tidak cukup. Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.",
+        });
+        return; // Stop the update process
+    }
+
+    // Proceed with updating data
     putData(target_url, data, responseData);
 
     console.log("Data:", data);
@@ -62,4 +77,4 @@ const btnUpdates = document.getElementById("btnUpdate");
 btnUpdates.addEventListener("click", () => {
     console.log("button aktif");
     updatePengeluaran();
-  });
+});
