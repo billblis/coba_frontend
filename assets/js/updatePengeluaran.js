@@ -38,50 +38,65 @@ const responseData = (result) => {
     }
 }
 
-const updatePengeluaran = async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const _id = urlParams.get("_id");
+document.addEventListener('DOMContentLoaded', function () {
+    const btnUpdates = document.getElementById("btnUpdate");
 
-    console.log("pengeluaranID:", _id);
+    btnUpdates.addEventListener("click", () => {
+        console.log("button aktif");
+        updatePengeluaran();
+    });
 
-    const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/updatePengeluaran?_id=" + _id;
+    async function updatePengeluaran() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const _id = urlParams.get("_id");
 
-    try {
-        // Fetch data for calculating the remaining balance
-        const pemasukanData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan");
-        const pengeluaranData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran");
+        console.log("pengeluaranID:", _id);
 
-        const pemasukan = pemasukanData.reduce((sum, item) => sum + (item.jumlah_masuk || 0), 0);
-        const pengeluaran = pengeluaranData.reduce((sum, item) => sum + (item.jumlah_keluar || 0), 0);
-        const remainingAmount = pemasukan - pengeluaran;
+        const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/updatePengeluaran?_id=" + _id;
 
-        const incomeAmount = parseFloat(getValue("jumlah_pemasukan")) || 0;
-        const expenseAmount = parseInt(getValue("jumlah_keluar")) || 0;
+        try {
+            // Fetch data for calculating the remaining balance
+            const pemasukanData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPemasukan");
+            const pengeluaranData = await fetchData("https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/getAllPengeluaran");
 
-        // Check if the expense amount exceeds the remaining balance
-        if (expenseAmount > remainingAmount) {
-            alert("Saldo tidak cukup. Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.");
-            return; // Stop the function if expense exceeds income
+            if (!pemasukanData || !pengeluaranData) {
+                console.error('Error fetching data: Data is null or undefined.');
+                return;
+            }
+
+            const pemasukan = pemasukanData.reduce((sum, item) => sum + (item.jumlah_masuk || 0), 0);
+            const pengeluaran = pengeluaranData.reduce((sum, item) => sum + (item.jumlah_keluar || 0), 0);
+            const remainingAmount = pemasukan - pengeluaran;
+
+            const incomeAmountElement = document.getElementById("jumlah_pemasukan");
+            const expenseAmountElement = document.getElementById("jumlah_keluar");
+
+            if (!incomeAmountElement || !expenseAmountElement) {
+                console.error('Error: Income or expense amount element is null or undefined.');
+                return;
+            }
+
+            const incomeAmount = parseFloat(incomeAmountElement.value) || 0;
+            const expenseAmount = parseInt(expenseAmountElement.value) || 0;
+
+            // Check if the expense amount exceeds the remaining balance
+            if (expenseAmount > remainingAmount) {
+                alert("Saldo tidak cukup. Jumlah pengeluaran tidak boleh lebih dari jumlah pemasukan.");
+                return; // Stop the function if expense exceeds income
+            }
+
+            const data = {
+                "tanggal_keluar": getValue("tanggal_keluar"),
+                "jumlah_keluar": expenseAmount,
+                "sumber": getValue("sumber"),
+                "deskripsi": getValue("deskripsi"),
+            };
+
+            // Continue with the update if the balance is sufficient
+            putData(target_url, data, responseData);
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
-
-        const data = {
-            "tanggal_keluar": getValue("tanggal_keluar"),
-            "jumlah_keluar": expenseAmount,
-            "sumber": getValue("sumber"),
-            "deskripsi": getValue("deskripsi"),
-        };
-
-        // Continue with the update if the balance is sufficient
-        putData(target_url, data, responseData);
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
     }
-};
-
-const btnUpdates = document.getElementById("btnUpdate");
-
-btnUpdates.addEventListener("click", () => {
-    console.log("button aktif");
-    updatePengeluaran();
 });
