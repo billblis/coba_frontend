@@ -7,11 +7,17 @@ const insertPemasukan = () => {
     const tokenkey = "Authorization";
     const tokenvalue = getCookie("Authorization");
 
-    // Get the current date in the format YYYY-MM-DD
-    const currentDate = new Date().toISOString().split('T')[0];
+    // Get the current date
+    const currentDate = new Date();
 
-    // Set the min attribute for the date input to the current date
-    document.getElementById("tanggal_masuk").setAttribute("min", currentDate);
+    // Set the minimum date to the next day's date
+    currentDate.setDate(currentDate.getDate() + 1);
+
+    // Format the date to YYYY-MM-DD
+    const minDate = currentDate.toISOString().split('T')[0];
+
+    // Set the min attribute for the date input to the next day's date
+    document.getElementById("tanggal_masuk").setAttribute("min", minDate);
 
     const data = {
         "tanggal_masuk": getValue("tanggal_masuk"),
