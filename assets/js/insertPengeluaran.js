@@ -5,6 +5,11 @@ import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { fetchData } from './getSisaSaldo.js';
 
+const today = new Date().toISOString().split('T')[0];
+
+// Set the max attribute of the date input field to today's date
+document.getElementById("tanggal_keluar").setAttribute("max", today);
+
 const insertPengeluaran = async () => {
     const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/insertPengeluaran";
     const tokenkey = "Authorization";

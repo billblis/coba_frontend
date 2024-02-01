@@ -2,22 +2,15 @@ import { postWithToken } from "https://jscroot.github.io/api/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { getValue } from "https://jscroot.github.io/element/croot.js"
 
+const today = new Date().toISOString().split('T')[0];
+
+// Set the max attribute of the date input field to today's date
+document.getElementById("tanggal_masuk").setAttribute("max", today);
+
 const insertPemasukan = () => {
     const target_url = "https://asia-southeast2-xenon-hawk-402203.cloudfunctions.net/insertPemasukan";
     const tokenkey = "Authorization";
     const tokenvalue = getCookie("Authorization");
-
-    // Get the current date
-    const currentDate = new Date();
-
-    // Set the minimum date to the next day's date
-    currentDate.setDate(currentDate.getDate() + 1);
-
-    // Format the date to YYYY-MM-DD
-    const minDate = currentDate.toISOString().split('T')[0];
-
-    // Set the min attribute for the date input to the next day's date
-    document.getElementById("tanggal_masuk").setAttribute("min", minDate);
 
     const data = {
         "tanggal_masuk": getValue("tanggal_masuk"),

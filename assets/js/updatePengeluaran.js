@@ -2,6 +2,11 @@ import { getValue } from "https://jscroot.github.io/element/croot.js";
 import { getCookie } from "https://jscroot.github.io/cookie/croot.js";
 import { fetchData } from './getSisaSaldo.js';
 
+const today = new Date().toISOString().split('T')[0];
+
+// Set the max attribute of the date input field to today's date
+document.getElementById("tanggal_keluar").setAttribute("max", today);
+
 const putData = (target_url, data, responseFunction) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", getCookie("Authorization"));
